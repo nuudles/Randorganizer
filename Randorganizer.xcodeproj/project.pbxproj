@@ -23,7 +23,7 @@
 		30DEC585201A6F3E008F6680 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DEC584201A6F3E008F6680 /* Item.swift */; };
 		30DEC587201A7019008F6680 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DEC586201A7019008F6680 /* Location.swift */; };
 		30DEC589201A73D4008F6680 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DEC588201A73D4008F6680 /* ItemViewController.swift */; };
-		30DEC58B201A76A4008F6680 /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DEC58A201A76A4008F6680 /* UIView+SafeArea.swift */; };
+		30DEC58B201A76A4008F6680 /* UIViewController+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DEC58A201A76A4008F6680 /* UIViewController+SafeArea.swift */; };
 		30DEC58E201A7B00008F6680 /* Dungeon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DEC58D201A7B00008F6680 /* Dungeon.swift */; };
 		30F79432201A899C0045D782 /* Collection+Chunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F79431201A899C0045D782 /* Collection+Chunk.swift */; };
 		30F79434201A8AAF0045D782 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F79433201A8AAF0045D782 /* ItemViewModel.swift */; };
@@ -54,7 +54,7 @@
 		30DEC584201A6F3E008F6680 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		30DEC586201A7019008F6680 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		30DEC588201A73D4008F6680 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
-		30DEC58A201A76A4008F6680 /* UIView+SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SafeArea.swift"; sourceTree = "<group>"; };
+		30DEC58A201A76A4008F6680 /* UIViewController+SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+SafeArea.swift"; sourceTree = "<group>"; };
 		30DEC58D201A7B00008F6680 /* Dungeon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dungeon.swift; sourceTree = "<group>"; };
 		30F79431201A899C0045D782 /* Collection+Chunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Chunk.swift"; sourceTree = "<group>"; };
 		30F79433201A8AAF0045D782 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
@@ -143,7 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				30F79442201B78320045D782 /* UIFont+Randorganizer.swift */,
-				30DEC58A201A76A4008F6680 /* UIView+SafeArea.swift */,
+				30DEC58A201A76A4008F6680 /* UIViewController+SafeArea.swift */,
 				30DEC581201A6CD0008F6680 /* UIViewController+Instantiate.swift */,
 				30F79431201A899C0045D782 /* Collection+Chunk.swift */,
 			);
@@ -348,7 +348,7 @@
 				30392064201BA52800DA0398 /* DungeonViewModel.swift in Sources */,
 				30F79443201B78320045D782 /* UIFont+Randorganizer.swift in Sources */,
 				30DEC580201A6BCA008F6680 /* RxBinder.swift in Sources */,
-				30DEC58B201A76A4008F6680 /* UIView+SafeArea.swift in Sources */,
+				30DEC58B201A76A4008F6680 /* UIViewController+SafeArea.swift in Sources */,
 				30F7943A201B76730045D782 /* MapViewController.swift in Sources */,
 				30DEC587201A7019008F6680 /* Location.swift in Sources */,
 			);

@@ -113,8 +113,8 @@ extension ItemViewController: ViewCustomizer {
 		stackView.distribution = .fillEqually
 
 		stackView.snp.makeConstraints { (make) in
-			make.top.equalTo(view.safeArea.top)
-			make.bottom.equalTo(view.safeArea.bottom)
+			make.top.equalTo(safeTop)
+			make.bottom.equalTo(safeBottom)
 			make.leading.trailing.equalToSuperview()
 		}
 	}
