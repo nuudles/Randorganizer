@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		30392064201BA52800DA0398 /* DungeonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392063201BA52800DA0398 /* DungeonViewModel.swift */; };
 		30392066201BA5C200DA0398 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392065201BA5C200DA0398 /* MapViewModel.swift */; };
+		30392068201BB36300DA0398 /* DungeonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392067201BB36300DA0398 /* DungeonConfiguration.swift */; };
+		3039206A201E13C600DA0398 /* DungeonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392069201E13C600DA0398 /* DungeonCollectionViewCell.swift */; };
+		3039206C201E141A00DA0398 /* UICollectionView+ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3039206B201E141A00DA0398 /* UICollectionView+ReusableView.swift */; };
+		3039206E201E144B00DA0398 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3039206D201E144B00DA0398 /* ReusableView.swift */; };
+		30392070201E168000DA0398 /* UIView+Instantiate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3039206F201E168000DA0398 /* UIView+Instantiate.swift */; };
+		30392072201E174500DA0398 /* DungeonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392071201E174500DA0398 /* DungeonCellViewModel.swift */; };
+		30392074201F9B2000DA0398 /* Array+ReplaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392073201F9B2000DA0398 /* Array+ReplaceItem.swift */; };
 		30DEC568201A68D4008F6680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DEC55F201A68D4008F6680 /* Assets.xcassets */; };
 		30DEC569201A68D4008F6680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DEC560201A68D4008F6680 /* LaunchScreen.storyboard */; };
 		30DEC56B201A68D4008F6680 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30DEC564201A68D4008F6680 /* Info.plist */; };
@@ -39,6 +46,13 @@
 /* Begin PBXFileReference section */
 		30392063201BA52800DA0398 /* DungeonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonViewModel.swift; sourceTree = "<group>"; };
 		30392065201BA5C200DA0398 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		30392067201BB36300DA0398 /* DungeonConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonConfiguration.swift; sourceTree = "<group>"; };
+		30392069201E13C600DA0398 /* DungeonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonCollectionViewCell.swift; sourceTree = "<group>"; };
+		3039206B201E141A00DA0398 /* UICollectionView+ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+ReusableView.swift"; sourceTree = "<group>"; };
+		3039206D201E144B00DA0398 /* ReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		3039206F201E168000DA0398 /* UIView+Instantiate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Instantiate.swift"; sourceTree = "<group>"; };
+		30392071201E174500DA0398 /* DungeonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonCellViewModel.swift; sourceTree = "<group>"; };
+		30392073201F9B2000DA0398 /* Array+ReplaceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ReplaceItem.swift"; sourceTree = "<group>"; };
 		30DEC549201A6804008F6680 /* Randorganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Randorganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DEC55F201A68D4008F6680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30DEC561201A68D4008F6680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -142,10 +156,13 @@
 		30DEC56D201A698F008F6680 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				30392073201F9B2000DA0398 /* Array+ReplaceItem.swift */,
+				30F79431201A899C0045D782 /* Collection+Chunk.swift */,
+				3039206B201E141A00DA0398 /* UICollectionView+ReusableView.swift */,
 				30F79442201B78320045D782 /* UIFont+Randorganizer.swift */,
+				3039206F201E168000DA0398 /* UIView+Instantiate.swift */,
 				30DEC58A201A76A4008F6680 /* UIViewController+SafeArea.swift */,
 				30DEC581201A6CD0008F6680 /* UIViewController+Instantiate.swift */,
-				30F79431201A899C0045D782 /* Collection+Chunk.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -165,9 +182,11 @@
 			isa = PBXGroup;
 			children = (
 				30DEC58D201A7B00008F6680 /* Dungeon.swift */,
+				30392067201BB36300DA0398 /* DungeonConfiguration.swift */,
 				30F79435201AC1890045D782 /* Game.swift */,
 				30DEC584201A6F3E008F6680 /* Item.swift */,
 				30DEC586201A7019008F6680 /* Location.swift */,
+				3039206D201E144B00DA0398 /* ReusableView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,6 +240,8 @@
 		30DEC58C201A7AF4008F6680 /* Dungeon */ = {
 			isa = PBXGroup;
 			children = (
+				30392071201E174500DA0398 /* DungeonCellViewModel.swift */,
+				30392069201E13C600DA0398 /* DungeonCollectionViewCell.swift */,
 				30F7943B201B767E0045D782 /* DungeonViewController.swift */,
 				30392063201BA52800DA0398 /* DungeonViewModel.swift */,
 			);
@@ -331,11 +352,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30392070201E168000DA0398 /* UIView+Instantiate.swift in Sources */,
 				30DEC582201A6CD0008F6680 /* UIViewController+Instantiate.swift in Sources */,
 				30DEC589201A73D4008F6680 /* ItemViewController.swift in Sources */,
 				30DEC58E201A7B00008F6680 /* Dungeon.swift in Sources */,
+				3039206E201E144B00DA0398 /* ReusableView.swift in Sources */,
 				30F79436201AC1890045D782 /* Game.swift in Sources */,
 				30DEC57E201A6BB3008F6680 /* ViewCustomizer.swift in Sources */,
+				30392072201E174500DA0398 /* DungeonCellViewModel.swift in Sources */,
 				30F7943C201B767E0045D782 /* DungeonViewController.swift in Sources */,
 				30F79432201A899C0045D782 /* Collection+Chunk.swift in Sources */,
 				30F79434201A8AAF0045D782 /* ItemViewModel.swift in Sources */,
@@ -347,8 +371,12 @@
 				30DEC585201A6F3E008F6680 /* Item.swift in Sources */,
 				30392064201BA52800DA0398 /* DungeonViewModel.swift in Sources */,
 				30F79443201B78320045D782 /* UIFont+Randorganizer.swift in Sources */,
+				30392068201BB36300DA0398 /* DungeonConfiguration.swift in Sources */,
+				3039206A201E13C600DA0398 /* DungeonCollectionViewCell.swift in Sources */,
+				30392074201F9B2000DA0398 /* Array+ReplaceItem.swift in Sources */,
 				30DEC580201A6BCA008F6680 /* RxBinder.swift in Sources */,
 				30DEC58B201A76A4008F6680 /* UIViewController+SafeArea.swift in Sources */,
+				3039206C201E141A00DA0398 /* UICollectionView+ReusableView.swift in Sources */,
 				30F7943A201B76730045D782 /* MapViewController.swift in Sources */,
 				30DEC587201A7019008F6680 /* Location.swift in Sources */,
 			);

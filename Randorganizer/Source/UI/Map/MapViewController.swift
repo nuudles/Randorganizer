@@ -9,7 +9,6 @@ import RxSwift
 import SnapKit
 import UIKit
 
-/// <# documentation #>
 final class MapViewController: UIViewController {
 	// MARK: - properties -
 	private let viewModel: MapViewModel

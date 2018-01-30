@@ -20,4 +20,19 @@ enum Dungeon {
 	case miseryMire
 	case turtleRock
 	case ganonsTower
+
+	static let allValues: [Dungeon] = [
+		.castleTower,
+		.easternPalace,
+		.desertPalace,
+		.towerOfHera,
+		.palaceOfDarkness,
+		.swampPalace,
+		.skullWoods,
+		.thievesTown,
+		.icePalace,
+		.miseryMire,
+		.turtleRock,
+		.ganonsTower
+	]
 }

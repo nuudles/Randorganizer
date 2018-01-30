@@ -8,7 +8,6 @@
 import Foundation
 import RxSwift
 
-/// <# documentation #>.
 final class MapViewModel {
 	// MARK: - Properties -
 	private let disposeBag = DisposeBag()

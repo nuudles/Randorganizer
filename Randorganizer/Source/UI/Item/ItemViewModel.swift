@@ -8,7 +8,6 @@
 import Foundation
 import RxSwift
 
-/// <# documentation #>.
 final class ItemViewModel {
 	// MARK: - properties -
 	private let disposeBag = DisposeBag()

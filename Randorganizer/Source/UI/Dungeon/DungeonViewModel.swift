@@ -8,13 +8,16 @@
 import Foundation
 import RxSwift
 
-/// <# documentation #>.
 final class DungeonViewModel {
 	// MARK: - Properties -
 	private let disposeBag = DisposeBag()
 
+	let dungeons: Observable<[DungeonConfiguration]>
+
 	// MARK: - Initialization -
-	init() {
+	init(dungeons: Observable<[DungeonConfiguration]>) {
+		self.dungeons = dungeons
+
 		setupBindings()
 	}
 }

@@ -9,7 +9,6 @@ import RxSwift
 import SnapKit
 import UIKit
 
-/// <# documentation #>
 final class RootViewController: UITabBarController {
 	// MARK: - Properties -
 	private let viewModel = RootViewModel()
@@ -22,12 +21,14 @@ final class RootViewController: UITabBarController {
 	// MARK: - Initialization -
 	init() {
 		itemViewController = ItemViewController(selectedItems: viewModel.selectedItems)
-		dungeonViewController = DungeonViewController()
+		dungeonViewController = DungeonViewController(dungeons: viewModel.dungeons)
 		mapViewController = MapViewController()
 
 		super.init(nibName: nil, bundle: nil)
 
 		itemViewController.delegate = self
+		dungeonViewController.delegate = self
+
 		viewControllers = [
 			UINavigationController(rootViewController: itemViewController),
 			UINavigationController(rootViewController: dungeonViewController),
@@ -57,5 +58,12 @@ extension RootViewController: RxBinder {
 extension RootViewController: ItemViewControllerDelegate {
 	func itemViewController(_ viewController: ItemViewController, didToggle item: Item) {
 		viewModel.toggle(item: item)
+	}
+}
+
+// MARK: - `DungeonViewControllerDelegate` -
+extension RootViewController: DungeonViewControllerDelegate {
+	func dungeonViewController(_ viewController: DungeonViewController, didToggle dungeon: Dungeon) {
+		viewModel.toggle(dungeon: dungeon)
 	}
 }

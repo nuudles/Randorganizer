@@ -8,6 +8,17 @@
 import Foundation
 
 struct Game {
+	// MARK: - Enums -
+	enum Mode {
+		case standard
+		case open
+		case swordless
+	}
+	enum Shuffle {
+		case normal
+		case keysanity
+	}
+
 	// MARK: - Constants -
 	private static let progressives: [Item: [Item]] = [
 		.sword: [.fightersSword, .masterSword, .temperedSword, .goldSword],
@@ -21,6 +32,7 @@ struct Game {
 
 	// MARK: - Properties -
 	var selectedItems = Set<Item>()
+	var dungeons = Dungeon.allValues.map { DungeonConfiguration(dungeon: $0) }
 
 	// MARK: - Internal Functions -
 	mutating func toggle(item: Item) {
@@ -40,5 +52,11 @@ struct Game {
 		}
 
 		selectedItems.insert(progressive[0])
+	}
+
+	mutating func toggle(dungeon: Dungeon) {
+		dungeons.replaceItem(matching: { $0.dungeon == dungeon }) {
+			$0.isComplete = !$0.isComplete
+		}
 	}
 }
