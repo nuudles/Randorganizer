@@ -18,7 +18,6 @@
 		30392074201F9B2000DA0398 /* Array+ReplaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392073201F9B2000DA0398 /* Array+ReplaceItem.swift */; };
 		30DEC568201A68D4008F6680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DEC55F201A68D4008F6680 /* Assets.xcassets */; };
 		30DEC569201A68D4008F6680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DEC560201A68D4008F6680 /* LaunchScreen.storyboard */; };
-		30DEC56B201A68D4008F6680 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30DEC564201A68D4008F6680 /* Info.plist */; };
 		30DEC56C201A68D4008F6680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DEC567201A68D4008F6680 /* AppDelegate.swift */; };
 		30DEC574201A6A45008F6680 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DEC573201A6A45008F6680 /* RootViewController.swift */; };
 		30DEC577201A6AD3008F6680 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DEC576201A6AD3008F6680 /* RxSwift.framework */; };
@@ -267,6 +266,7 @@
 				30DEC546201A6804008F6680 /* Frameworks */,
 				30DEC547201A6804008F6680 /* Resources */,
 				30DEC583201A6CE4008F6680 /* Carthage Script */,
+				303920752020C45600DA0398 /* Swiftlint Script */,
 			);
 			buildRules = (
 			);
@@ -315,7 +315,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30DEC56B201A68D4008F6680 /* Info.plist in Resources */,
 				30DEC568201A68D4008F6680 /* Assets.xcassets in Resources */,
 				30DEC569201A68D4008F6680 /* LaunchScreen.storyboard in Resources */,
 				30F79441201B78060045D782 /* Fonts in Resources */,
@@ -325,6 +324,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		303920752020C45600DA0398 /* Swiftlint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swiftlint Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		30DEC583201A6CE4008F6680 /* Carthage Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

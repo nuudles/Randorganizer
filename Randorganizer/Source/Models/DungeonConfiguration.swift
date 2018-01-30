@@ -20,7 +20,7 @@ struct DungeonConfiguration {
 	var openedTreasures = 0
 	var keyCount = 0
 	var hasBigKey = false
-	var reward: Reward? = nil
+	var reward: Reward?
 
 	init(dungeon: Dungeon) {
 		self.dungeon = dungeon
@@ -28,7 +28,7 @@ struct DungeonConfiguration {
 }
 
 extension DungeonConfiguration: Equatable {
-	static func ==(lhs: DungeonConfiguration, rhs: DungeonConfiguration) -> Bool {
+	static func == (lhs: DungeonConfiguration, rhs: DungeonConfiguration) -> Bool {
 		return lhs.dungeon == rhs.dungeon &&
 			lhs.isComplete == rhs.isComplete &&
 			lhs.openedTreasures == rhs.openedTreasures &&

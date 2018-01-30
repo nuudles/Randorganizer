@@ -60,7 +60,7 @@ final class ItemViewController: UIViewController {
 	// MARK: - Initializations -
 	init(selectedItems: Observable<Set<Item>>) {
 		var buttons = [UIButton]()
-		ItemViewController.toggles.enumerated().forEach { (index, toggle) in
+		ItemViewController.toggles.enumerated().forEach { (index, _) in
 			let button = UIButton()
 			button.tag = index
 			buttons.append(button)

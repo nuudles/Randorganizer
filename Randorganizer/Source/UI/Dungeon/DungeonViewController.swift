@@ -91,7 +91,7 @@ extension DungeonViewController: RxBinder {
 
 		collectionView.rx
 			.modelSelected(DungeonConfiguration.self)
-			.subscribe(onNext: { [unowned self] in self.delegate?.dungeonViewController(self, didToggle: $0.dungeon)} )
+			.subscribe(onNext: { [unowned self] in self.delegate?.dungeonViewController(self, didToggle: $0.dungeon)})
 			.disposed(by: disposeBag)
 	}
 }

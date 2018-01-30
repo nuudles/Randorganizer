@@ -13,7 +13,7 @@ final class MapViewController: UIViewController {
 	// MARK: - properties -
 	private let viewModel: MapViewModel
 	private let disposeBag = DisposeBag()
-	
+
 	// MARK: - initialization -
 	init() {
 		self.viewModel = MapViewModel()
@@ -22,15 +22,15 @@ final class MapViewController: UIViewController {
 
 		title = "Map"
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 	// MARK: - lifecycle -
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		instantiateView()
 	}
 }
@@ -38,10 +38,10 @@ final class MapViewController: UIViewController {
 // MARK: - `ViewCustomizer` -
 extension MapViewController: ViewCustomizer {
 	// MARK: - constants -
-	
+
 	func styleView() {
 	}
-	
+
 	func addSubviews() {
 	}
 }
@@ -51,4 +51,3 @@ extension MapViewController: RxBinder {
 	func setupBindings() {
 	}
 }
-

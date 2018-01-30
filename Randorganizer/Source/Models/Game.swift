@@ -55,8 +55,9 @@ struct Game {
 	}
 
 	mutating func toggle(dungeon: Dungeon) {
-		dungeons.replaceItem(matching: { $0.dungeon == dungeon }) {
-			$0.isComplete = !$0.isComplete
-		}
+		dungeons.replaceItem(
+			matching: { $0.dungeon == dungeon },
+			afterApplying: { $0.isComplete = !$0.isComplete }
+		)
 	}
 }

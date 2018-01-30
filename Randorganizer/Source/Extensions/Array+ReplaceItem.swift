@@ -8,7 +8,7 @@
 import Foundation
 
 extension Array {
-	mutating func replaceItem(matching: (Element) -> Bool, afterApplying closure: (inout Element) -> ()) {
+	mutating func replaceItem(matching: (Element) -> Bool, afterApplying closure: (inout Element) -> Void) {
 		for (index, var item) in enumerated() {
 			guard matching(item) else { continue }
 
