@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		303559D2202105D600E4CEDE /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303559D1202105D600E4CEDE /* RxDataSources.framework */; };
+		303559D4202108A200E4CEDE /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303559D3202108A200E4CEDE /* Differentiator.framework */; };
 		30392064201BA52800DA0398 /* DungeonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392063201BA52800DA0398 /* DungeonViewModel.swift */; };
 		30392066201BA5C200DA0398 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392065201BA5C200DA0398 /* MapViewModel.swift */; };
 		30392068201BB36300DA0398 /* DungeonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392067201BB36300DA0398 /* DungeonConfiguration.swift */; };
@@ -43,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		303559D1202105D600E4CEDE /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
+		303559D3202108A200E4CEDE /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
 		30392063201BA52800DA0398 /* DungeonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonViewModel.swift; sourceTree = "<group>"; };
 		30392065201BA5C200DA0398 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		30392067201BB36300DA0398 /* DungeonConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonConfiguration.swift; sourceTree = "<group>"; };
@@ -85,8 +89,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				303559D4202108A200E4CEDE /* Differentiator.framework in Frameworks */,
 				30DEC577201A6AD3008F6680 /* RxSwift.framework in Frameworks */,
 				30DEC579201A6ADD008F6680 /* RxCocoa.framework in Frameworks */,
+				303559D2202105D600E4CEDE /* RxDataSources.framework in Frameworks */,
 				30DEC57B201A6AE2008F6680 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +226,8 @@
 		30DEC575201A6AD3008F6680 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				303559D3202108A200E4CEDE /* Differentiator.framework */,
+				303559D1202105D600E4CEDE /* RxDataSources.framework */,
 				30DEC57A201A6AE1008F6680 /* SnapKit.framework */,
 				30DEC578201A6ADD008F6680 /* RxCocoa.framework */,
 				30DEC576201A6AD3008F6680 /* RxSwift.framework */,
@@ -347,12 +355,16 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
 			);
 			name = "Carthage Script";
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxDataSources.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Differentiator.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

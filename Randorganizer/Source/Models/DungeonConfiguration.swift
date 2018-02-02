@@ -13,17 +13,28 @@ struct DungeonConfiguration {
 		case otherPendant
 		case crystal
 		case redCrystal
+
+		static let allValues: [Reward] = [
+			.greenPendant,
+			.otherPendant,
+			.crystal,
+			.redCrystal
+		]
 	}
 
 	let dungeon: Dungeon
 	var isComplete = false
-	var openedTreasures = 0
-	var keyCount = 0
+	var openedChests = 0
+	var totalChests: Int
+	var foundKeys = 0
+	var totalKeys = 0
 	var hasBigKey = false
 	var reward: Reward?
+	var requiredMedallion: Item?
 
-	init(dungeon: Dungeon) {
+	init(dungeon: Dungeon, totalChests: Int) {
 		self.dungeon = dungeon
+		self.totalChests = totalChests
 	}
 }
 
@@ -31,9 +42,12 @@ extension DungeonConfiguration: Equatable {
 	static func == (lhs: DungeonConfiguration, rhs: DungeonConfiguration) -> Bool {
 		return lhs.dungeon == rhs.dungeon &&
 			lhs.isComplete == rhs.isComplete &&
-			lhs.openedTreasures == rhs.openedTreasures &&
-			lhs.keyCount == rhs.keyCount &&
+			lhs.openedChests == rhs.openedChests &&
+			lhs.totalChests == rhs.totalChests &&
+			lhs.foundKeys == rhs.foundKeys &&
+			lhs.totalKeys == rhs.totalKeys &&
 			lhs.hasBigKey == rhs.hasBigKey &&
-			lhs.reward == rhs.reward
+			lhs.reward == rhs.reward &&
+			lhs.requiredMedallion == rhs.requiredMedallion
 	}
 }

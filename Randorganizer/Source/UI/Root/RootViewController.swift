@@ -66,4 +66,16 @@ extension RootViewController: DungeonViewControllerDelegate {
 	func dungeonViewController(_ viewController: DungeonViewController, didToggle dungeon: Dungeon) {
 		viewModel.toggle(dungeon: dungeon)
 	}
+
+	func dungeonViewController(_ viewController: DungeonViewController, didToggleChestsFor dungeon: Dungeon) {
+		viewModel.toggleChests(for: dungeon)
+	}
+
+	func dungeonViewController(_ viewController: DungeonViewController, didToggleRewardFor dungeon: Dungeon) {
+		viewModel.toggleReward(for: dungeon)
+	}
+
+	func dungeonViewController(_ viewController: DungeonViewController, didToggleMedallionFor dungeon: Dungeon) {
+		viewModel.toggleMedallion(for: dungeon)
+	}
 }

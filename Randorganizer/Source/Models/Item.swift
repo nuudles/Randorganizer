@@ -64,4 +64,11 @@ enum Item {
 	case bugNet
 	case book
 	case bomb
+
+	// MARK: - Constants -
+	static let medallions: [Item] = [
+		.bombos,
+		.ether,
+		.quake
+	]
 }

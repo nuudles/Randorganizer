@@ -30,6 +30,18 @@ final class RootViewModel {
 	func toggle(dungeon: Dungeon) {
 		game.value.toggle(dungeon: dungeon)
 	}
+
+	func toggleChests(for dungeon: Dungeon) {
+		game.value.toggleChests(for: dungeon)
+	}
+
+	func toggleReward(for dungeon: Dungeon) {
+		game.value.toggleReward(for: dungeon)
+	}
+
+	func toggleMedallion(for dungeon: Dungeon) {
+		game.value.toggleMedallion(for: dungeon)
+	}
 }
 
 // MARK: - `RxBinder` -
