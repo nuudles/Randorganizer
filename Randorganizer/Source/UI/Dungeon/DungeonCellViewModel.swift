@@ -72,7 +72,7 @@ extension DungeonCellViewModel: RxBinder {
 private extension Dungeon {
 	var hasReward: Bool {
 		switch self {
-		case .castleTower: return false
+		case .castleTower, .ganonsTower: return false
 		default: return true
 		}
 	}

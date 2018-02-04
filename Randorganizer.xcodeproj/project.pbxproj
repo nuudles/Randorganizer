@@ -13,7 +13,6 @@
 		30337F5320274F9500BA986E /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30337F5220274F9500BA986E /* LocationButton.swift */; };
 		30337F5520276B4300BA986E /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30337F5420276B4300BA986E /* UIImage+Color.swift */; };
 		30337F562027709B00BA986E /* ZoomImageView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303559D52024AE1300E4CEDE /* ZoomImageView.framework */; };
-		303559D2202105D600E4CEDE /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303559D1202105D600E4CEDE /* RxDataSources.framework */; };
 		303559D4202108A200E4CEDE /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303559D3202108A200E4CEDE /* Differentiator.framework */; };
 		303559DA202550AD00E4CEDE /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303559D9202550AD00E4CEDE /* Availability.swift */; };
 		303559DC202551B500E4CEDE /* Game+Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303559DB202551B500E4CEDE /* Game+Availability.swift */; };
@@ -58,7 +57,6 @@
 		30337F502026A81B00BA986E /* Location+World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+World.swift"; sourceTree = "<group>"; };
 		30337F5220274F9500BA986E /* LocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
 		30337F5420276B4300BA986E /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
-		303559D1202105D600E4CEDE /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
 		303559D3202108A200E4CEDE /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
 		303559D52024AE1300E4CEDE /* ZoomImageView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZoomImageView.framework; path = Carthage/Build/iOS/ZoomImageView.framework; sourceTree = "<group>"; };
 		303559D9202550AD00E4CEDE /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 				303559D4202108A200E4CEDE /* Differentiator.framework in Frameworks */,
 				30DEC577201A6AD3008F6680 /* RxSwift.framework in Frameworks */,
 				30DEC579201A6ADD008F6680 /* RxCocoa.framework in Frameworks */,
-				303559D2202105D600E4CEDE /* RxDataSources.framework in Frameworks */,
 				30DEC57B201A6AE2008F6680 /* SnapKit.framework in Frameworks */,
 				30337F562027709B00BA986E /* ZoomImageView.framework in Frameworks */,
 			);
@@ -252,7 +249,6 @@
 			children = (
 				303559D52024AE1300E4CEDE /* ZoomImageView.framework */,
 				303559D3202108A200E4CEDE /* Differentiator.framework */,
-				303559D1202105D600E4CEDE /* RxDataSources.framework */,
 				30DEC57A201A6AE1008F6680 /* SnapKit.framework */,
 				30DEC578201A6ADD008F6680 /* RxCocoa.framework */,
 				30DEC576201A6AD3008F6680 /* RxSwift.framework */,
@@ -380,7 +376,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SnapKit.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ZoomImageView.framework",
 			);
@@ -389,7 +384,6 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SnapKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxDataSources.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Differentiator.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZoomImageView.framework",
 			);

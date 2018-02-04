@@ -24,14 +24,6 @@ final class DungeonViewController: UIViewController {
 
 	weak var delegate: DungeonViewControllerDelegate?
 
-	private let dataSource = RxCollectionViewSectionedAnimatedDataSource<AnimatableSectionModel<Int, DungeonConfiguration>>(
-		configureCell: { (_, _, _, _) in
-			return UICollectionViewCell()
-		},
-		configureSupplementaryView: { (_, _, _, _) in
-			return UICollectionReusableView()
-		}
-	)
 	private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 
 	// MARK: - Initialization -
@@ -51,7 +43,6 @@ final class DungeonViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		setUpDataSource()
 		instantiateView()
 	}
 
@@ -59,16 +50,6 @@ final class DungeonViewController: UIViewController {
 		super.viewDidLayoutSubviews()
 
 		collectionView.collectionViewLayout.invalidateLayout()
-	}
-
-	// MARK: - Private Functions -
-	private func setUpDataSource() {
-		dataSource.configureCell = { [unowned self] (_, collectionView, indexPath, item) in
-			let cell: DungeonCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-			cell.delegate = self
-			cell.update(with: item)
-			return cell
-		}
 	}
 }
 
@@ -105,8 +86,13 @@ extension DungeonViewController: RxBinder {
 			.disposed(by: disposeBag)
 
 		viewModel.dungeons
-			.map { [AnimatableSectionModel(model: 0, items: $0)] }
-			.bind(to: collectionView.rx.items(dataSource: dataSource))
+			.bind(to: collectionView.rx.items) { (collectionView, row, item) in
+				let cell: DungeonCollectionViewCell =
+					collectionView.dequeueReusableCell(for: IndexPath(item: row, section: 0))
+				cell.delegate = self
+				cell.update(with: item)
+				return cell
+			}
 			.disposed(by: disposeBag)
 
 		collectionView.rx
@@ -138,11 +124,5 @@ extension DungeonViewController: DungeonCollectionViewCellDelegate {
 
 	func dungeonCollectionViewCell(_ cell: DungeonCollectionViewCell, didToggleMedallionFor dungeon: Dungeon) {
 		delegate?.dungeonViewController(self, didToggleMedallionFor: dungeon)
-	}
-}
-
-extension DungeonConfiguration: IdentifiableType {
-	var identity: String {
-		return "\(self)"
 	}
 }
