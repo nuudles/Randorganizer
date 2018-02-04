@@ -22,12 +22,13 @@ final class RootViewController: UITabBarController {
 	init() {
 		itemViewController = ItemViewController(selectedItems: viewModel.selectedItems)
 		dungeonViewController = DungeonViewController(dungeons: viewModel.dungeons)
-		mapViewController = MapViewController()
+		mapViewController = MapViewController(locationAvailabilities: viewModel.locationAvailabilities)
 
 		super.init(nibName: nil, bundle: nil)
 
 		itemViewController.delegate = self
 		dungeonViewController.delegate = self
+		mapViewController.delegate = self
 
 		viewControllers = [
 			UINavigationController(rootViewController: itemViewController),
@@ -77,5 +78,12 @@ extension RootViewController: DungeonViewControllerDelegate {
 
 	func dungeonViewController(_ viewController: DungeonViewController, didToggleMedallionFor dungeon: Dungeon) {
 		viewModel.toggleMedallion(for: dungeon)
+	}
+}
+
+// MARK: - `MapViewControllerDelegate` -
+extension RootViewController: MapViewControllerDelegate {
+	func mapViewController(_ viewController: MapViewController, didToggle location: Location) {
+		viewModel.toggle(location: location)
 	}
 }

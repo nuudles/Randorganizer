@@ -1,3 +1,4 @@
 github "ReactiveX/RxSwift" "4.1.1"
 github "RxSwiftCommunity/RxDataSources" "3.0.2"
 github "SnapKit/SnapKit" "4.0.0"
+github "nuudles/ZoomImageView" "735db4779eadc21ef570a6ac3f9e7735b7e4f3fc"

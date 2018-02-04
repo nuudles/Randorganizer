@@ -16,6 +16,7 @@ final class RootViewModel {
 	private let game = Variable(Game())
 	let selectedItems = ReplaySubject<Set<Item>>.create(bufferSize: 1)
 	let dungeons = ReplaySubject<[DungeonConfiguration]>.create(bufferSize: 1)
+	let locationAvailabilities = ReplaySubject<[Location: Availability]>.create(bufferSize: 1)
 
 	// MARK: - Initialization -
 	init() {
@@ -42,6 +43,10 @@ final class RootViewModel {
 	func toggleMedallion(for dungeon: Dungeon) {
 		game.value.toggleMedallion(for: dungeon)
 	}
+
+	func toggle(location: Location) {
+		game.value.toggle(location: location)
+	}
 }
 
 // MARK: - `RxBinder` -
@@ -57,6 +62,18 @@ extension RootViewModel: RxBinder {
 			.map { $0.dungeons }
 			.distinctUntilChanged { $0 == $1 }
 			.bind(to: dungeons)
+			.disposed(by: disposeBag)
+
+		game.asObservable()
+			.map { (game) in
+				var availabilities = [Location: Availability]()
+				(Location.lightWorldLocations + Location.darkWorldLocations)
+					.forEach {
+						availabilities[$0] = game.availability(for: $0)
+					}
+				return availabilities
+			}
+			.bind(to: locationAvailabilities)
 			.disposed(by: disposeBag)
 	}
 }

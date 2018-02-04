@@ -20,7 +20,7 @@ struct Game {
 	}
 
 	// MARK: - Constants -
-	private static let progressives: [Item: [Item]] = [
+	static let progressives: [Item: [Item]] = [
 		.sword: [.fightersSword, .masterSword, .temperedSword, .goldSword],
 		.shield: [.fightersShield, .fireShield, .mirrorShield],
 		.tunic: [.blueTunic, .redTunic],
@@ -33,6 +33,7 @@ struct Game {
 	// MARK: - Properties -
 	var shuffleMode = Shuffle.normal
 	var selectedItems = Set<Item>()
+	var selectedLocations = Set<Location>()
 	var dungeons = Dungeon.allValues.map {
 		DungeonConfiguration(dungeon: $0, totalChests: $0.totalChestCount(for: .normal))
 	}
@@ -92,6 +93,14 @@ struct Game {
 				$0.requiredMedallion = Game.toggle(item: $0.requiredMedallion, in: Item.medallions)
 			}
 		)
+	}
+
+	mutating func toggle(location: Location) {
+		if selectedLocations.contains(location) {
+			selectedLocations.remove(location)
+		} else {
+			selectedLocations.insert(location)
+		}
 	}
 
 	// MARK: - Private Functions -
