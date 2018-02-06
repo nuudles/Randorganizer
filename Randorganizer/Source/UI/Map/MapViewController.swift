@@ -25,10 +25,14 @@ final class MapViewController: UIViewController {
 	private let mapImageView = ZoomImageView()
 	private let lightWorldButtons: [LocationButton: Location]
 	private let darkWorldButtons: [LocationButton: Location]
+	private let lightWorldDungeonViews: [Dungeon: DungeonLocationView]
+	private let darkWorldDungeonViews: [Dungeon: DungeonLocationView]
 
 	// MARK: - Initialization -
-	init(locationAvailabilities: Observable<[Location: Availability]>) {
-		self.viewModel = MapViewModel(locationAvailabilities: locationAvailabilities)
+	init(locationAvailabilities: Observable<[Location: Availability]>,
+		 chestAndBossAvailabilities: Observable<[Dungeon: (Availability, Availability)]>) {
+		self.viewModel = MapViewModel(locationAvailabilities: locationAvailabilities,
+									  chestAndBossAvailabilities: chestAndBossAvailabilities)
 
 		lightWorldButtons = Location.lightWorldLocations
 			.reduce([LocationButton: Location]()) { (result, location) in
@@ -40,6 +44,18 @@ final class MapViewController: UIViewController {
 			.reduce([LocationButton: Location]()) { (result, location) in
 				var result = result
 				result[LocationButton(location: location)] = location
+				return result
+			}
+		lightWorldDungeonViews = Dungeon.lightWorldDungeons
+			.reduce([Dungeon: DungeonLocationView]()) { (result, dungeon) in
+				var result = result
+				result[dungeon] = DungeonLocationView(dungeon: dungeon)
+				return result
+			}
+		darkWorldDungeonViews = Dungeon.darkWorldDungeons
+			.reduce([Dungeon: DungeonLocationView]()) { (result, dungeon) in
+				var result = result
+				result[dungeon] = DungeonLocationView(dungeon: dungeon)
 				return result
 			}
 
@@ -71,6 +87,14 @@ final class MapViewController: UIViewController {
 			button.transform = CGAffineTransform(translationX: size * location.offset.x / 100.0,
 												 y: size * location.offset.y / 100.0)
 		}
+		lightWorldDungeonViews.forEach { (dungeon, dungeonView) in
+			dungeonView.transform = CGAffineTransform(translationX: size * dungeon.offset.x / 100.0,
+												 y: size * dungeon.offset.y / 100.0)
+		}
+		darkWorldDungeonViews.forEach { (dungeon, dungeonView) in
+			dungeonView.transform = CGAffineTransform(translationX: size * dungeon.offset.x / 100.0,
+													  y: size * dungeon.offset.y / 100.0)
+		}
 	}
 }
 
@@ -86,7 +110,8 @@ extension MapViewController: ViewCustomizer {
 
 	func addSubviews() {
 		addImageView()
-		setUpButtons()
+		addLocationButtons()
+		addDungeonViews()
 	}
 
 	private func addImageView() {
@@ -100,7 +125,7 @@ extension MapViewController: ViewCustomizer {
 		}
 	}
 
-	private func setUpButtons() {
+	private func addLocationButtons() {
 		(Array(lightWorldButtons.keys) + Array(darkWorldButtons.keys)).forEach { (button) in
 			mapImageView.imageView.addSubview(button)
 			button.addTarget(self, action: #selector(locationButtonTapped(_:)), for: .touchUpInside)
@@ -109,6 +134,18 @@ extension MapViewController: ViewCustomizer {
 				make.centerX.equalTo(mapImageView.imageView.snp.left)
 				make.centerY.equalTo(mapImageView.imageView.snp.top)
 				make.size.equalTo(LocationButton.size)
+			}
+		}
+	}
+
+	private func addDungeonViews() {
+		(Array(lightWorldDungeonViews.values) + Array(darkWorldDungeonViews.values)).forEach { (dungeonView) in
+			mapImageView.imageView.addSubview(dungeonView)
+
+			dungeonView.snp.makeConstraints { (make) in
+				make.centerX.equalTo(mapImageView.imageView.snp.left)
+				make.centerY.equalTo(mapImageView.imageView.snp.top)
+				make.size.equalTo(DungeonLocationView.size)
 			}
 		}
 	}
@@ -150,6 +187,8 @@ extension MapViewController: RxBinder {
 				onNext: { [unowned self] (world) in
 					self.lightWorldButtons.keys.forEach { $0.isHidden = (world != .light) }
 					self.darkWorldButtons.keys.forEach { $0.isHidden = (world != .dark) }
+					self.lightWorldDungeonViews.values.forEach { $0.isHidden = (world != .light) }
+					self.darkWorldDungeonViews.values.forEach { $0.isHidden = (world != .dark) }
 				}
 			)
 			.disposed(by: disposeBag)
@@ -162,6 +201,17 @@ extension MapViewController: RxBinder {
 					}
 					self.lightWorldButtons.forEach(closure)
 					self.darkWorldButtons.forEach(closure)
+				}
+			)
+			.disposed(by: disposeBag)
+
+		viewModel.chestAndBossAvailabilities
+			.subscribe(
+				onNext: { [unowned self] in
+					$0.forEach { (dungeon, availabilities) in
+						let dungeonView = self.lightWorldDungeonViews[dungeon] ?? self.darkWorldDungeonViews[dungeon]
+						dungeonView?.update(with: availabilities)
+					}
 				}
 			)
 			.disposed(by: disposeBag)
@@ -301,6 +351,37 @@ private extension Location {
 			return CGPoint(x: 5.8, y: 69.2)
 		case .pyramidFairy:
 			return CGPoint(x: 47, y: 48.5)
+		}
+	}
+}
+
+private extension Dungeon {
+	var offset: CGPoint {
+		switch self {
+		case .castleTower:
+			return CGPoint(x: 50, y: 52.6)
+		case .easternPalace:
+			return CGPoint(x: 94.6, y: 38.8)
+		case .desertPalace:
+			return CGPoint(x: 7.6, y: 78.4)
+		case .towerOfHera:
+			return CGPoint(x: 62, y: 5.5)
+		case .palaceOfDarkness:
+			return CGPoint(x: 94, y: 40)
+		case .swampPalace:
+			return CGPoint(x: 47, y: 91)
+		case .skullWoods:
+			return CGPoint(x: 6.6, y: 5.4)
+		case .thievesTown:
+			return CGPoint(x: 12.8, y: 47.9)
+		case .icePalace:
+			return CGPoint(x: 79.6, y: 85.8)
+		case .miseryMire:
+			return CGPoint(x: 11.6, y: 82.9)
+		case .turtleRock:
+			return CGPoint(x: 93.8, y: 7)
+		case .ganonsTower:
+			return CGPoint(x: 58, y: 5.5)
 		}
 	}
 }

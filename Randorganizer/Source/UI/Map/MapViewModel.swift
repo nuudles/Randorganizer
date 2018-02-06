@@ -12,11 +12,14 @@ final class MapViewModel {
 	// MARK: - Properties -
 	private let disposeBag = DisposeBag()
 	let locationAvailabilities: Observable<[Location: Availability]>
+	let chestAndBossAvailabilities: Observable<[Dungeon: (Availability, Availability)]>
 	let world = BehaviorSubject<World>(value: .light)
 
 	// MARK: - Initialization -
-	init(locationAvailabilities: Observable<[Location: Availability]>) {
+	init(locationAvailabilities: Observable<[Location: Availability]>,
+		 chestAndBossAvailabilities: Observable<[Dungeon: (Availability, Availability)]>) {
 		self.locationAvailabilities = locationAvailabilities
+		self.chestAndBossAvailabilities = chestAndBossAvailabilities
 		setupBindings()
 	}
 

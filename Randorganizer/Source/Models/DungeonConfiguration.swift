@@ -31,6 +31,9 @@ struct DungeonConfiguration {
 	var hasBigKey = false
 	var reward: Reward?
 	var requiredMedallion: Item?
+	var remainingChests: Int {
+		return totalChests - openedChests
+	}
 
 	init(dungeon: Dungeon, totalChests: Int) {
 		self.dungeon = dungeon

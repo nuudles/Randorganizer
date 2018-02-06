@@ -17,6 +17,7 @@ final class RootViewModel {
 	let selectedItems = ReplaySubject<Set<Item>>.create(bufferSize: 1)
 	let dungeons = ReplaySubject<[DungeonConfiguration]>.create(bufferSize: 1)
 	let locationAvailabilities = ReplaySubject<[Location: Availability]>.create(bufferSize: 1)
+	let chestAndBossAvailabilities = ReplaySubject<[Dungeon: (Availability, Availability)]>.create(bufferSize: 1)
 
 	// MARK: - Initialization -
 	init() {
@@ -74,6 +75,18 @@ extension RootViewModel: RxBinder {
 				return availabilities
 			}
 			.bind(to: locationAvailabilities)
+			.disposed(by: disposeBag)
+
+		game.asObservable()
+			.map { (game) in
+				var availabilities = [Dungeon: (Availability, Availability)]()
+				Dungeon.allValues
+					.forEach {
+						availabilities[$0] = (game.chestAvailability(for: $0), game.bossAvailability(for: $0))
+					}
+				return availabilities
+			}
+			.bind(to: chestAndBossAvailabilities)
 			.disposed(by: disposeBag)
 	}
 }

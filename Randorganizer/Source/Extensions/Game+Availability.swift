@@ -23,14 +23,12 @@ extension Game {
 		case .spiralCave:
 			return eastDeathMountainAvailability
 		case .mimicCave:
-			let turtleRockAvailability = availability(for: .turtleRock)
-			guard turtleRockAvailability != .unavailable && hasItem(.mirror) && hasItem(.hammer) else { return .unavailable }
+			guard hasItem(.moonPearl) && hasItem(.hammer) && hasItem(.somaria) && hasItem(.mirror) &&
+					hasItem(.titansMitts),
+				canEnterMedallionDungeon(.turtleRock)
+				else { return .unavailable }
 
-			if !hasItem(.fireRod) {
-				return .possible
-			}
-
-			return deathMountainAvailability
+			return hasItem(.fireRod) ? deathMountainAvailability : .possible
 		case .tavern:
 			return .available
 		case .chickenHouse:
@@ -71,18 +69,20 @@ extension Game {
 			return hasItem(.flippers) ? .available : .glitches
 		case .etherTablet:
 			let tabletAvailability = self.tabletAvailability
+			let deathMountainAccess = deathMountainAvailability
 			guard tabletAvailability != .unavailable,
-				availability(for: .towerOfHera) != .unavailable
+				deathMountainAccess != .unavailable,
+				hasItem(.mirror) || (hasItem(.hookshot) && hasItem(.hammer))
 				else { return .unavailable }
-			return tabletAvailability
+
+			return tabletAvailability == .available ? deathMountainAccess : tabletAvailability
 		case .bombosTablet:
 			let tabletAvailability = self.tabletAvailability
-			let mirrorCaveAccess = availability(for: .mirrorCave)
-			guard tabletAvailability != .unavailable else { return .unavailable }
+			guard tabletAvailability != .unavailable,
+				hasItem(.mirror),
+				canReachOutcast || hasSouthDarkWorldFromPyramidAccess
+				else { return .unavailable }
 
-			if mirrorCaveAccess != .available {
-				return mirrorCaveAccess
-			}
 			return tabletAvailability
 		case .kingZora:
 			return hasItem(.flippers) || hasItem(.glove) ? .available : .glitches
@@ -93,7 +93,7 @@ extension Game {
 		case .forestHideout:
 			return .available
 		case .lumberjackTree:
-			return dungeonIsComplete(.castleTower) && hasItem(.boots) ? .available : .unavailable
+			return dungeonIsComplete(.castleTower) && hasItem(.boots) ? .available : .visible
 		case .spectacleRockCave:
 			return deathMountainAvailability
 		case .mirrorCave:
@@ -301,32 +301,223 @@ extension Game {
 		}
 	}
 
-	func availability(for dungeon: Dungeon) -> Availability {
+	func bossAvailability(for dungeon: Dungeon) -> Availability {
+		guard dungeons.filter({ $0.dungeon == dungeon && $0.isComplete }).count == 0 else { return .completed }
+
 		switch dungeon {
 		case .castleTower:
-			return .available
+			guard hasItem(.cape) || hasAtLeastMasterSword,
+				canDefeatBoss(for: dungeon) else {
+				return .unavailable
+			}
+			return hasItem(.lantern) ? .available : .glitches
 		case .easternPalace:
-			return .available
+			guard hasItem(.bowAndArrow) || hasItem(.bowAndSilverArrows),
+				canDefeatBoss(for: dungeon)
+				else { return .unavailable }
+			return hasItem(.lantern) ? .available : .glitches
 		case .desertPalace:
-			return .available
+			let canEnterLightWay = hasItem(.book) && hasItem(.glove)
+			let canEnterDarkWay = hasItem(.flute) && hasItem(.titansMitts) && hasItem(.mirror)
+			guard canEnterLightWay || canEnterDarkWay,
+				hasItem(.lantern) || hasItem(.fireRod),
+				canDefeatBoss(for: dungeon)
+				else { return .unavailable }
+			return hasItem(.boots) ? .available : .possible
 		case .towerOfHera:
-			return .available
+			guard canDefeatBoss(for: dungeon)
+				else { return .unavailable }
+			return chestAvailability(for: dungeon)
 		case .palaceOfDarkness:
-			return .available
+			guard hasItem(.moonPearl) && (hasItem(.bow) || hasItem(.bowAndSilverArrows)) && hasItem(.hammer),
+				dungeonIsComplete(.castleTower) || hasItem(.glove),
+				canDefeatBoss(for: dungeon)
+				else { return .unavailable }
+			return hasItem(.lantern) ? .available : .glitches
 		case .swampPalace:
+			guard hasItem(.moonPearl) && hasItem(.mirror) && hasItem(.flippers),
+				hasItem(.hammer) && hasItem(.hookshot),
+				hasItem(.glove) || dungeonIsComplete(.castleTower),
+				canDefeatBoss(for: dungeon)
+				else { return .unavailable }
 			return .available
 		case .skullWoods:
+			guard canReachOutcast,
+				hasItem(.fireRod),
+				canDefeatBoss(for: dungeon),
+				hasItem(.sword)
+				else { return .unavailable }
 			return .available
 		case .thievesTown:
+			guard canReachOutcast,
+				canDefeatBoss(for: dungeon)
+				else { return .unavailable }
 			return .available
 		case .icePalace:
-			return .available
+			guard hasItem(.moonPearl) && hasItem(.flippers) && hasItem(.titansMitts) && hasItem(.hammer),
+				canDefeatBoss(for: dungeon)
+				else { return .unavailable }
+			return hasItem(.hookshot) || hasItem(.somaria) ? .available : .glitches
 		case .miseryMire:
-			return .available
+			guard hasItem(.flute) && hasItem(.moonPearl) && hasItem(.titansMitts) && hasItem(.somaria),
+				hasItem(.boots) || hasItem(.hookshot),
+				canEnterMedallionDungeon(dungeon),
+				canDefeatBoss(for: dungeon)
+				else { return .unavailable }
+
+			if hasItem(.lantern) {
+				return .available
+			}
+
+			return hasItem(.fireRod) ? .glitches : .possible
 		case .turtleRock:
-			return .available
+			guard hasItem(.moonPearl) && hasItem(.hammer) && hasItem(.titansMitts) && hasItem(.somaria),
+				hasItem(.hookshot) || hasItem(.mirror),
+				hasItem(.iceRod) && hasItem(.fireRod),
+				canEnterMedallionDungeon(dungeon),
+				canDefeatBoss(for: dungeon)
+				else { return .unavailable }
+			if !(hasItem(.byrna) || hasItem(.cape) || hasItem(.mirrorShield)) {
+				return .possible
+			}
+			return hasItem(.lantern) ? .available : .glitches
 		case .ganonsTower:
+			let completedCrystals =
+				dungeons.filter({ ($0.reward == .crystal || $0.reward == .redCrystal) && $0.isComplete }).count
+			guard completedCrystals == 7,
+				hasItem(.titansMitts) && hasItem(.moonPearl),
+				hasItem(.hookshot) || hasItem(.hammer),
+				hasItem(.bowAndArrow) || hasItem(.bowAndSilverArrows),
+				hasItem(.lantern) || hasItem(.fireRod),
+				canDefeatBoss(for: dungeon)
+				else { return .unavailable }
 			return .available
+		}
+	}
+
+	func chestAvailability(for dungeon: Dungeon) -> Availability {
+		guard let configuration = dungeons.filter({ $0.dungeon == dungeon }).first else { return .unavailable }
+		guard configuration.remainingChests > 0 else { return .completed }
+
+		switch dungeon {
+		case .castleTower:
+			return bossAvailability(for: dungeon)
+		case .easternPalace:
+			if configuration.remainingChests <= 2 && !hasItem(.lantern) {
+				return .possible
+			} else if configuration.remainingChests == 1 && !(hasItem(.bow) || hasItem(.bowAndSilverArrows)) {
+				return .possible
+			}
+			return .available
+		case .desertPalace:
+			guard hasItem(.book) || (hasItem(.flute) && hasItem(.titansMitts) && hasItem(.mirror))
+				else { return .unavailable }
+
+			if hasItem(.glove) && (hasItem(.fireRod) || hasItem(.lantern)) && hasItem(.boots) {
+				return .available
+			}
+
+			return configuration.remainingChests > 1 && hasItem(.boots) ? .available : .possible
+		case .towerOfHera:
+			let deathMountainAccess = deathMountainAvailability
+			guard deathMountainAccess != .unavailable,
+				hasItem(.mirror) || (hasItem(.hookshot) && hasItem(.hammer))
+				else { return .unavailable }
+			guard hasItem(.fireRod) || hasItem(.lantern) else { return .possible }
+
+			return deathMountainAccess
+		case .palaceOfDarkness:
+			guard hasItem(.moonPearl),
+				dungeonIsComplete(.castleTower) || (hasItem(.hammer) && hasItem(.glove)) ||
+					(hasItem(.titansMitts) && hasItem(.flippers))
+				else { return .unavailable }
+			return !((hasItem(.bow) || hasItem(.bowAndSilverArrows)) && hasItem(.lantern)) ||
+				configuration.remainingChests == 1 && !hasItem(.hammer)
+				? .possible : .available
+		case .swampPalace:
+			guard hasItem(.moonPearl) && hasItem(.mirror) && hasItem(.flippers),
+				canReachOutcast || (dungeonIsComplete(.castleTower) && hasItem(.hammer))
+				else { return .unavailable }
+			if configuration.remainingChests <= 2 {
+				return !hasItem(.hammer) || !hasItem(.hookshot) ? .unavailable : .available
+			} else if configuration.remainingChests <= 4 {
+				return !hasItem(.hammer) ? .unavailable : !hasItem(.hookshot) ? .possible : .available
+			} else if configuration.remainingChests <= 5 {
+				return !hasItem(.hammer) ? .unavailable : .available
+			}
+			return !hasItem(.hammer) ? .possible : .available
+		case .skullWoods:
+			guard canReachOutcast else { return .unavailable }
+			return hasItem(.fireRod) ? .available : .possible
+		case .thievesTown:
+			guard canReachOutcast else { return .unavailable }
+			return configuration.remainingChests == 1 && !hasItem(.hammer) ? .possible : .available
+		case .icePalace:
+			guard hasItem(.moonPearl) && hasItem(.flippers) && hasItem(.titansMitts),
+				hasItem(.fireRod) || (hasItem(.bombos) && hasItem(.sword))
+				else { return .unavailable }
+			return hasItem(.hammer) ? .available : .glitches
+		case .miseryMire:
+			guard hasItem(.flute) && hasItem(.moonPearl) && hasItem(.titansMitts),
+				hasItem(.boots) || hasItem(.hookshot),
+				canEnterMedallionDungeon(dungeon)
+				else { return .unavailable }
+			if configuration.remainingChests > 1 {
+				return hasItem(.fireRod) || hasItem(.lantern) ? .available : .possible
+			}
+			return hasItem(.lantern) && hasItem(.somaria) ? .available : .possible
+		case .turtleRock:
+			guard hasItem(.moonPearl) && hasItem(.hammer) && hasItem(.titansMitts) && hasItem(.somaria),
+				hasItem(.hookshot) || hasItem(.mirror),
+				canEnterMedallionDungeon(dungeon)
+				else { return .unavailable }
+
+			let hasLaserBridgeSafety = hasItem(.byrna) || hasItem(.cape) || hasItem(.mirrorShield)
+			let darkAvailability = hasItem(.lantern) ? Availability.available : .glitches
+
+			if configuration.remainingChests <= 1 {
+				return !hasLaserBridgeSafety ? .unavailable : hasItem(.fireRod) && hasItem(.iceRod)
+					? darkAvailability : .possible
+			} else if configuration.remainingChests <= 2 {
+				return !hasLaserBridgeSafety ? .unavailable : hasItem(.fireRod) ? darkAvailability : .possible
+			} else if configuration.remainingChests <= 4 {
+				return hasLaserBridgeSafety && hasItem(.fireRod) && hasItem(.lantern) ? .available : .possible
+			}
+
+			return hasItem(.fireRod) && hasItem(.lantern) ? .available : .possible
+		case .ganonsTower:
+			return bossAvailability(for: dungeon)
+		}
+	}
+
+	private func canDefeatBoss(for dungeon: Dungeon) -> Bool {
+		switch dungeon {
+		case .castleTower, .ganonsTower:
+			return hasItem(.bugNet) || hasItem(.sword)
+		case .easternPalace:
+			return hasItem(.sword) || hasItem(.hammer) || hasItem(.bow) || hasItem(.bowAndSilverArrows) || hasItem(.fireRod) ||
+				hasItem(.iceRod) || hasItem(.somaria) || hasItem(.byrna) || hasItem(.boomerang) || hasItem(.bomb)
+		case .desertPalace:
+			return hasItem(.sword) || hasItem(.hammer) || hasItem(.bow) || hasItem(.bowAndSilverArrows) || hasItem(.somaria) ||
+				hasItem(.byrna) || hasItem(.bomb)
+		case .towerOfHera:
+			return hasItem(.sword) || hasItem(.hammer)
+		case .palaceOfDarkness:
+			return hasItem(.hammer) || (hasItem(.bomb) && (hasItem(.sword) || hasItem(.bow) || hasItem(.bowAndSilverArrows)))
+		case .swampPalace:
+			return hasItem(.hookshot) && (hasItem(.sword) || hasItem(.bow) || hasItem(.bowAndSilverArrows) || hasItem(.somaria) || hasItem(.byrna) || hasItem(.bomb))
+		case .skullWoods:
+			return hasItem(.sword) || hasItem(.hammer) || hasItem(.somaria) || hasItem(.byrna) || hasItem(.fireRod)
+		case .thievesTown:
+			return hasItem(.sword) || hasItem(.hammer) || hasItem(.somaria) || hasItem(.byrna)
+		case .icePalace:
+			let canDefeatBlock = (hasItem(.bombos) && hasItem(.sword)) || hasItem(.fireRod)
+			let canDefeatCloud = hasItem(.fireRod) || hasItem(.sword) || hasItem(.hammer)
+			return canDefeatBlock && canDefeatCloud
+		case .miseryMire:
+			return hasItem(.sword) || hasItem(.hammer) || hasItem(.bow) || hasItem(.bowAndSilverArrows) || hasItem(.bomb)
+		case .turtleRock:
+			return hasItem(.fireRod) && hasItem(.iceRod) && (hasItem(.sword) || hasItem(.hammer))
 		}
 	}
 
@@ -348,6 +539,19 @@ extension Game {
 		return dungeons.filter { $0.dungeon == dungeon }
 			.first?
 			.isComplete ?? false
+	}
+
+	private func canEnterMedallionDungeon(_ dungeon: Dungeon) -> Bool {
+		// Need a sword to use a medallion
+		guard hasItem(.sword) else { return false }
+
+		if hasItem(.bombos) && hasItem(.ether) && hasItem(.quake) {
+			return true
+		}
+		guard let medallion = dungeons.filter({ $0.dungeon == dungeon }).first?.requiredMedallion,
+			hasItem(medallion)
+			else { return false }
+		return true
 	}
 
 	private var tabletAvailability: Availability {

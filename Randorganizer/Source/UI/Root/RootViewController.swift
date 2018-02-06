@@ -22,7 +22,8 @@ final class RootViewController: UITabBarController {
 	init() {
 		itemViewController = ItemViewController(selectedItems: viewModel.selectedItems)
 		dungeonViewController = DungeonViewController(dungeons: viewModel.dungeons)
-		mapViewController = MapViewController(locationAvailabilities: viewModel.locationAvailabilities)
+		mapViewController = MapViewController(locationAvailabilities: viewModel.locationAvailabilities,
+											  chestAndBossAvailabilities: viewModel.chestAndBossAvailabilities)
 
 		super.init(nibName: nil, bundle: nil)
 

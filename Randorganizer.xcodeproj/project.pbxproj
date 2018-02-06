@@ -13,6 +13,8 @@
 		30337F5320274F9500BA986E /* LocationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30337F5220274F9500BA986E /* LocationButton.swift */; };
 		30337F5520276B4300BA986E /* UIImage+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30337F5420276B4300BA986E /* UIImage+Color.swift */; };
 		30337F562027709B00BA986E /* ZoomImageView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303559D52024AE1300E4CEDE /* ZoomImageView.framework */; };
+		30337F58202775F100BA986E /* DungeonLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30337F57202775F100BA986E /* DungeonLocationView.swift */; };
+		30337F5A2027774A00BA986E /* Dungeon+World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30337F592027774A00BA986E /* Dungeon+World.swift */; };
 		303559D4202108A200E4CEDE /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303559D3202108A200E4CEDE /* Differentiator.framework */; };
 		303559DA202550AD00E4CEDE /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303559D9202550AD00E4CEDE /* Availability.swift */; };
 		303559DC202551B500E4CEDE /* Game+Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303559DB202551B500E4CEDE /* Game+Availability.swift */; };
@@ -57,6 +59,8 @@
 		30337F502026A81B00BA986E /* Location+World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+World.swift"; sourceTree = "<group>"; };
 		30337F5220274F9500BA986E /* LocationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationButton.swift; sourceTree = "<group>"; };
 		30337F5420276B4300BA986E /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
+		30337F57202775F100BA986E /* DungeonLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonLocationView.swift; sourceTree = "<group>"; };
+		30337F592027774A00BA986E /* Dungeon+World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dungeon+World.swift"; sourceTree = "<group>"; };
 		303559D3202108A200E4CEDE /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
 		303559D52024AE1300E4CEDE /* ZoomImageView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZoomImageView.framework; path = Carthage/Build/iOS/ZoomImageView.framework; sourceTree = "<group>"; };
 		303559D9202550AD00E4CEDE /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 			children = (
 				30392073201F9B2000DA0398 /* Array+ReplaceItem.swift */,
 				30F79431201A899C0045D782 /* Collection+Chunk.swift */,
+				30337F592027774A00BA986E /* Dungeon+World.swift */,
 				303559DB202551B500E4CEDE /* Game+Availability.swift */,
 				30337F502026A81B00BA986E /* Location+World.swift */,
 				3039206B201E141A00DA0398 /* UICollectionView+ReusableView.swift */,
@@ -228,6 +233,7 @@
 		30DEC571201A6A2C008F6680 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				30337F57202775F100BA986E /* DungeonLocationView.swift */,
 				30337F5220274F9500BA986E /* LocationButton.swift */,
 				30F79439201B76730045D782 /* MapViewController.swift */,
 				30392065201BA5C200DA0398 /* MapViewModel.swift */,
@@ -415,6 +421,7 @@
 				30337F4F2026A7FB00BA986E /* World.swift in Sources */,
 				30F79438201B73740045D782 /* RootViewModel.swift in Sources */,
 				30337F5320274F9500BA986E /* LocationButton.swift in Sources */,
+				30337F58202775F100BA986E /* DungeonLocationView.swift in Sources */,
 				30392066201BA5C200DA0398 /* MapViewModel.swift in Sources */,
 				30DEC56C201A68D4008F6680 /* AppDelegate.swift in Sources */,
 				30DEC585201A6F3E008F6680 /* Item.swift in Sources */,
@@ -426,6 +433,7 @@
 				303559DA202550AD00E4CEDE /* Availability.swift in Sources */,
 				3039206A201E13C600DA0398 /* DungeonCollectionViewCell.swift in Sources */,
 				30392074201F9B2000DA0398 /* Array+ReplaceItem.swift in Sources */,
+				30337F5A2027774A00BA986E /* Dungeon+World.swift in Sources */,
 				30DEC580201A6BCA008F6680 /* RxBinder.swift in Sources */,
 				303559DC202551B500E4CEDE /* Game+Availability.swift in Sources */,
 				30DEC58B201A76A4008F6680 /* UIViewController+SafeArea.swift in Sources */,

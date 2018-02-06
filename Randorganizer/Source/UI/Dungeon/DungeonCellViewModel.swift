@@ -44,7 +44,7 @@ extension DungeonCellViewModel: RxBinder {
 			.disposed(by: disposeBag)
 
 		configuration.map {
-				let remainingChests = $0.totalChests - $0.openedChests
+				let remainingChests = $0.remainingChests
 				return remainingChests > 0 ? String(remainingChests) : ""
 			}
 			.bind(to: remainingChests)
