@@ -397,7 +397,8 @@ extension Game {
 
 	func chestAvailability(for dungeon: Dungeon) -> Availability {
 		guard let configuration = dungeons.filter({ $0.dungeon == dungeon }).first else { return .unavailable }
-		guard configuration.remainingChests > 0 else { return .completed }
+		guard configuration.remainingChests > 0 || dungeon == .castleTower || dungeon == .ganonsTower
+			else { return .completed }
 
 		switch dungeon {
 		case .castleTower:
