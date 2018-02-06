@@ -5,6 +5,7 @@
 //  Created by Christopher Luu on 1/26/18.
 //
 
+import EasyTipView
 import RxSwift
 import SnapKit
 import UIKit
@@ -27,6 +28,7 @@ final class MapViewController: UIViewController {
 	private let darkWorldButtons: [LocationButton: Location]
 	private let lightWorldDungeonViews: [Dungeon: DungeonLocationView]
 	private let darkWorldDungeonViews: [Dungeon: DungeonLocationView]
+	private weak var tipView: EasyTipView?
 
 	// MARK: - Initialization -
 	init(locationAvailabilities: Observable<[Location: Availability]>,
@@ -130,6 +132,10 @@ extension MapViewController: ViewCustomizer {
 			mapImageView.imageView.addSubview(button)
 			button.addTarget(self, action: #selector(locationButtonTapped(_:)), for: .touchUpInside)
 
+			let gestureRecognizer = UILongPressGestureRecognizer(target: self,
+																 action: #selector(longPressRecognized(_:)))
+			button.addGestureRecognizer(gestureRecognizer)
+
 			button.snp.makeConstraints { (make) in
 				make.centerX.equalTo(mapImageView.imageView.snp.left)
 				make.centerY.equalTo(mapImageView.imageView.snp.top)
@@ -166,6 +172,27 @@ extension MapViewController: ViewCustomizer {
 	@objc private func locationButtonTapped(_ sender: LocationButton) {
 		guard let location = lightWorldButtons[sender] ?? darkWorldButtons[sender] else { return }
 		delegate?.mapViewController(self, didToggle: location)
+	}
+
+	// MARK: - UIGestureRecognizer Callback Functions -
+	@objc private func longPressRecognized(_ recognizer: UILongPressGestureRecognizer) {
+		if recognizer.state == .ended || recognizer.state == .cancelled {
+			tipView?.dismiss()
+		}
+
+		guard recognizer.state == .began,
+			let button = recognizer.view as? LocationButton,
+			let location = lightWorldButtons[button] ?? darkWorldButtons[button]
+			else { return }
+
+		var preferences = EasyTipView.Preferences()
+		preferences.drawing.backgroundColor = .black
+		preferences.drawing.foregroundColor = .white
+		preferences.drawing.font = .returnOfGanonFont(ofSize: 18)
+		let tip = EasyTipView(text: location.title, preferences: preferences)
+		tip.show(forView: button)
+
+		tipView = tip
 	}
 }
 
@@ -351,6 +378,141 @@ private extension Location {
 			return CGPoint(x: 5.8, y: 69.2)
 		case .pyramidFairy:
 			return CGPoint(x: 47, y: 48.5)
+		}
+	}
+
+	var title: String {
+		switch self {
+		case .kingsTomb:
+			return "King's Tomb"
+		case .lightWorldSwamp:
+			return "Light World Swamp"
+		case .linksHouse:
+			return "Link's House"
+		case .spiralCave:
+			return "Spiral Cave"
+		case .mimicCave:
+			return "Mimic Cave"
+		case .tavern:
+			return "Tavern"
+		case .chickenHouse:
+			return "Chicken House"
+		case .aginahsCave:
+			return "Aginah's Cave"
+		case .sahasrahlasHut:
+			return "Sahasrahla's Hut"
+		case .kakarikoWell:
+			return "Kakariko Well"
+		case .blindsHut:
+			return "Blind's Hut"
+		case .paradoxCave:
+			return "Paradox Cave"
+		case .bonkRocks:
+			return "Bonk Rocks"
+		case .miniMoldormCave:
+			return "Minimoldorm Cave"
+		case .iceRodCave:
+			return "Ice Rod Cave"
+		case .bottleVendor:
+			return "Bottle Vendor"
+		case .sahasrahlasReward:
+			return "Sahasrahla"
+		case .sickKid:
+			return "Sick kid"
+		case .bridgeHideout:
+			return "Hideout under the bridge"
+		case .etherTablet:
+			return "Ether Tablet"
+		case .bombosTablet:
+			return "Bombos Tablet"
+		case .kingZora:
+			return "King Zora"
+		case .lostOldMan:
+			return "Lost Old Man"
+		case .potionShop:
+			return "Witch outside Potion Shop"
+		case .forestHideout:
+			return "Forest Hideout"
+		case .lumberjackTree:
+			return "Lumberjack Tree"
+		case .spectacleRockCave:
+			return "Spectacle Rock Cave"
+		case .mirrorCave:
+			return "South of Grove (Mirror Cave)"
+		case .graveyardCliffCave:
+			return "Graveyard Cliff Cave"
+		case .checkerboardCave:
+			return "Checkerboard Cave"
+		case .library:
+			return "Library"
+		case .mushroom:
+			return "Mushroom"
+		case .spectacleRock:
+			return "Spectacle Rock"
+		case .floatingIsland:
+			return "Floating Island"
+		case .raceMinigame:
+			return "Race minigame"
+		case .desertWestLedge:
+			return "Desert West Ledge"
+		case .lakeHyliaIsland:
+			return "Lake Hylia Island"
+		case .zoraLedge:
+			return "Zora River Ledge"
+		case .buriedItem:
+			return "Buried Item"
+		case .sewerEscapeSideRoom:
+			return "Escape Sewer Side Room"
+		case .castleSecretEntrance:
+			return "Castle Secret Entrance"
+		case .castleDungeon:
+			return "Hyrule Castle Dungeon"
+		case .sanctuary:
+			return "Sanctuary"
+		case .madBatter:
+			return "Mad Batter"
+		case .dwarfEscort:
+			return "Take the dwarf/frog home"
+		case .masterSwordPedestal:
+			return "Master Sword Pedestal"
+		case .sewerEscapeDarkRoom:
+			return "Escape Sewer Dark Room"
+		case .waterfallOfWishing:
+			return "Waterfall of Wishing"
+		case .bombableHut:
+			return "Bombable Hut"
+		case .cShapedHouse:
+			return "C-Shaped House"
+		case .mireHut:
+			return "Mire Hut"
+		case .superBunnyCave:
+			return "SuperBunny Cave"
+		case .spikeCave:
+			return "Spike Cave"
+		case .hypeCave:
+			return "Hype Cave"
+		case .hookshotCaveBottom:
+			return "Hookshot Cave (Boots Accessible)"
+		case .hookshotCaveTop:
+			return "Hookshot Cave (Not Boots Accessible)"
+		case .treasureChestMinigame:
+			return "Treasure Chest Mini-game"
+		case .stumpKid:
+			return "Stump Kid"
+		case .purpleChest:
+			return "Purple Chest"
+		case .catfish:
+			return "Catfish"
+		case .hammerPegCave:
+			return "Hammer Peg Cave"
+		case .bumperCave:
+			return "Bumper Cave"
+		case .pyramid:
+			return "Pyramid Ledge"
+		case .diggingGame:
+			return "Digging Minigame"
+		case .pyramidFairy:
+			return "Pyramid Fairy"
 		}
 	}
 }
