@@ -23,7 +23,7 @@ final class DungeonCellViewModel {
 
 	// MARK: - Initializations -
 	init() {
-		setupBindings()
+		setUpBindings()
 	}
 
 	// MARK: - Internal Functions -
@@ -34,7 +34,7 @@ final class DungeonCellViewModel {
 
 // MARK: - `RxBinder` -
 extension DungeonCellViewModel: RxBinder {
-	func setupBindings() {
+	func setUpBindings() {
 		configuration.map { $0.dungeon }
 			.bind(to: dungeon)
 			.disposed(by: disposeBag)

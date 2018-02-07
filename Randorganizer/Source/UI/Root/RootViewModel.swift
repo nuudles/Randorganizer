@@ -21,7 +21,7 @@ final class RootViewModel {
 
 	// MARK: - Initialization -
 	init() {
-		setupBindings()
+		setUpBindings()
 	}
 
 	// MARK: - Internal Functions -
@@ -52,7 +52,7 @@ final class RootViewModel {
 
 // MARK: - `RxBinder` -
 extension RootViewModel: RxBinder {
-	func setupBindings() {
+	func setUpBindings() {
 		game.asObservable()
 			.map { $0.selectedItems }
 			.distinctUntilChanged()

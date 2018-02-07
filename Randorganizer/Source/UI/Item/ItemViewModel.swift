@@ -24,6 +24,6 @@ final class ItemViewModel {
 
 // MARK: - `RxBinder` -
 extension ItemViewModel: RxBinder {
-	func setupBindings() {
+	func setUpBindings() {
 	}
 }

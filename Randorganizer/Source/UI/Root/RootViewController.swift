@@ -27,15 +27,7 @@ final class RootViewController: UITabBarController {
 
 		super.init(nibName: nil, bundle: nil)
 
-		itemViewController.delegate = self
-		dungeonViewController.delegate = self
-		mapViewController.delegate = self
-
-		viewControllers = [
-			UINavigationController(rootViewController: itemViewController),
-			UINavigationController(rootViewController: dungeonViewController),
-			UINavigationController(rootViewController: mapViewController)
-		]
+		setUpViewControllers()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -48,11 +40,28 @@ final class RootViewController: UITabBarController {
 
 		instantiateView()
 	}
+
+	// MARK: - Private Functions -
+	private func setUpViewControllers() {
+		itemViewController.delegate = self
+		dungeonViewController.delegate = self
+		mapViewController.delegate = self
+
+		viewControllers = [
+			UINavigationController(rootViewController: itemViewController),
+			UINavigationController(rootViewController: dungeonViewController),
+			UINavigationController(rootViewController: mapViewController)
+		]
+
+		viewControllers?[0].tabBarItem.image = #imageLiteral(resourceName: "itemTab").withRenderingMode(.alwaysOriginal)
+		viewControllers?[1].tabBarItem.image = #imageLiteral(resourceName: "dungeonTab").withRenderingMode(.alwaysOriginal)
+		viewControllers?[2].tabBarItem.image = #imageLiteral(resourceName: "mapTab").withRenderingMode(.alwaysOriginal)
+	}
 }
 
 // MARK: - `RxBinder` -
 extension RootViewController: RxBinder {
-	func setupBindings() {
+	func setUpBindings() {
 	}
 }
 

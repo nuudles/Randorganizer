@@ -14,7 +14,7 @@ extension UIViewController {
 			viewCustomizer.addSubviews()
 		}
 		if let binder = self as? RxBinder {
-			binder.setupBindings()
+			binder.setUpBindings()
 		}
 	}
 }

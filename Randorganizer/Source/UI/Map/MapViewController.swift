@@ -22,7 +22,7 @@ final class MapViewController: UIViewController {
 
 	weak var delegate: MapViewControllerDelegate?
 
-	private let toggleBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+	private let toggleButton = UIButton()
 	private let mapImageView = ZoomImageView()
 	private let lightWorldButtons: [LocationButton: Location]
 	private let darkWorldButtons: [LocationButton: Location]
@@ -104,16 +104,18 @@ final class MapViewController: UIViewController {
 extension MapViewController: ViewCustomizer {
 	func styleView() {
 		view.backgroundColor = .black
-
-		navigationItem.rightBarButtonItem = toggleBarButtonItem
-		toggleBarButtonItem.target = self
-		toggleBarButtonItem.action = #selector(toggleButtonTapped)
 	}
 
 	func addSubviews() {
+		addToggleButton()
 		addImageView()
 		addLocationButtons()
 		addDungeonViews()
+	}
+
+	private func addToggleButton() {
+		navigationItem.rightBarButtonItem = UIBarButtonItem(customView: toggleButton)
+		toggleButton.addTarget(self, action: #selector(toggleButtonTapped), for: .touchUpInside)
 	}
 
 	private func addImageView() {
@@ -198,10 +200,10 @@ extension MapViewController: ViewCustomizer {
 
 // MARK: - `RxBinder` -
 extension MapViewController: RxBinder {
-	func setupBindings() {
+	func setUpBindings() {
 		viewModel.world
-			.map { $0 == .light ? "Dark" : "Light" }
-			.bind(to: toggleBarButtonItem.rx.title)
+			.map { $0 == .light ? #imageLiteral(resourceName: "darkWorldTile") : #imageLiteral(resourceName: "magicMirror") }
+			.bind(to: toggleButton.rx.image(for: .normal))
 			.disposed(by: disposeBag)
 
 		viewModel.world

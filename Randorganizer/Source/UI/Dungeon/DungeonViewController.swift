@@ -80,7 +80,7 @@ extension DungeonViewController: ViewCustomizer {
 
 // MARK: - `RxBinder` -
 extension DungeonViewController: RxBinder {
-	func setupBindings() {
+	func setUpBindings() {
 		collectionView.rx
 			.setDelegate(self)
 			.disposed(by: disposeBag)

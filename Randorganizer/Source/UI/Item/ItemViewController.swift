@@ -145,7 +145,7 @@ extension ItemViewController: ViewCustomizer {
 
 // MARK: - `RxBinder` -
 extension ItemViewController: RxBinder {
-	func setupBindings() {
+	func setUpBindings() {
 		viewModel.selectedItems
 			.subscribe(onNext: { [unowned self] in self.updateButtons(with: $0) })
 			.disposed(by: disposeBag)

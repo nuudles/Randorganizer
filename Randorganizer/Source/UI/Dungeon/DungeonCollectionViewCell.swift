@@ -59,6 +59,7 @@ extension DungeonCollectionViewCell: ViewCustomizer {
 
 	private func addImageView() {
 		contentView.addSubview(imageView)
+		imageView.contentMode = .scaleAspectFit
 
 		imageView.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
@@ -122,7 +123,7 @@ extension DungeonCollectionViewCell: ViewCustomizer {
 
 // MARK: - `RxBinder` -
 extension DungeonCollectionViewCell: RxBinder {
-	func setupBindings() {
+	func setUpBindings() {
 		Observable.combineLatest(viewModel.dungeon, viewModel.isComplete)
 			.subscribe(onNext: { [unowned self] in self.updateImageView(with: $0, isComplete: $1) })
 			.disposed(by: disposeBag)
@@ -173,7 +174,7 @@ extension DungeonCollectionViewCell: RxBinder {
 		case .icePalace: imageView.image = #imageLiteral(resourceName: "kholdstare")
 		case .miseryMire: imageView.image = #imageLiteral(resourceName: "vitreous")
 		case .turtleRock: imageView.image = #imageLiteral(resourceName: "trinexx")
-		case .ganonsTower: imageView.image = #imageLiteral(resourceName: "ganonTower")
+		case .ganonsTower: imageView.image = #imageLiteral(resourceName: "ganon")
 		}
 		imageView.alpha = isComplete ? 1.0 : 0.3
 	}

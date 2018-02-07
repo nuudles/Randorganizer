@@ -18,12 +18,12 @@ final class DungeonViewModel {
 	init(dungeons: Observable<[DungeonConfiguration]>) {
 		self.dungeons = dungeons
 
-		setupBindings()
+		setUpBindings()
 	}
 }
 
 // MARK: - `RxBinder` -
 extension DungeonViewModel: RxBinder {
-	func setupBindings() {
+	func setUpBindings() {
 	}
 }

@@ -20,7 +20,7 @@ final class MapViewModel {
 		 chestAndBossAvailabilities: Observable<[Dungeon: (Availability, Availability)]>) {
 		self.locationAvailabilities = locationAvailabilities
 		self.chestAndBossAvailabilities = chestAndBossAvailabilities
-		setupBindings()
+		setUpBindings()
 	}
 
 	// MARK: - Internal Functions -
@@ -37,6 +37,6 @@ final class MapViewModel {
 
 // MARK: - `RxBinder` -
 extension MapViewModel: RxBinder {
-	func setupBindings() {
+	func setUpBindings() {
 	}
 }

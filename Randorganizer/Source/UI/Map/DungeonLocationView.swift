@@ -74,6 +74,7 @@ extension DungeonLocationView: ViewCustomizer {
 		imageBackgroundView.layer.borderWidth = 1
 
 		imageBackgroundView.addSubview(imageView)
+		imageView.contentMode = .scaleAspectFit
 
 		imageBackgroundView.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview().inset(6.0)
@@ -98,7 +99,7 @@ private extension Dungeon {
 		case .icePalace: return #imageLiteral(resourceName: "kholdstare")
 		case .miseryMire: return #imageLiteral(resourceName: "vitreous")
 		case .turtleRock: return #imageLiteral(resourceName: "trinexx")
-		case .ganonsTower: return #imageLiteral(resourceName: "ganonTower")
+		case .ganonsTower: return #imageLiteral(resourceName: "ganon")
 		}
 	}
 }
