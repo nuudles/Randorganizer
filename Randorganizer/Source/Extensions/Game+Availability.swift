@@ -87,7 +87,9 @@ extension Game {
 		case .kingZora:
 			return hasItem(.flippers) || hasItem(.glove) ? .available : .glitches
 		case .lostOldMan:
-			return deathMountainAvailability
+			let deathMountainAccess = deathMountainAvailability
+			guard deathMountainAccess != .unavailable else { return .unavailable }
+			return hasItem(.lantern) ? .available : .glitches
 		case .potionShop:
 			return hasItem(.mushroom) ? .available : .unavailable
 		case .forestHideout:
