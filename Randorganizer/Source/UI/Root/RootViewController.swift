@@ -17,6 +17,7 @@ final class RootViewController: UITabBarController {
 	private let itemViewController: ItemViewController
 	private let dungeonViewController: DungeonViewController
 	private let mapViewController: MapViewController
+	private let settingsViewController: SettingsViewController
 
 	// MARK: - Initialization -
 	init() {
@@ -24,6 +25,7 @@ final class RootViewController: UITabBarController {
 		dungeonViewController = DungeonViewController(dungeons: viewModel.dungeons)
 		mapViewController = MapViewController(locationAvailabilities: viewModel.locationAvailabilities,
 											  chestAndBossAvailabilities: viewModel.chestAndBossAvailabilities)
+		settingsViewController = SettingsViewController()
 
 		super.init(nibName: nil, bundle: nil)
 
@@ -46,16 +48,19 @@ final class RootViewController: UITabBarController {
 		itemViewController.delegate = self
 		dungeonViewController.delegate = self
 		mapViewController.delegate = self
+		settingsViewController.delegate = self
 
 		viewControllers = [
 			UINavigationController(rootViewController: itemViewController),
 			UINavigationController(rootViewController: dungeonViewController),
-			UINavigationController(rootViewController: mapViewController)
+			UINavigationController(rootViewController: mapViewController),
+			UINavigationController(rootViewController: settingsViewController)
 		]
 
 		viewControllers?[0].tabBarItem.image = #imageLiteral(resourceName: "itemTab").withRenderingMode(.alwaysOriginal)
 		viewControllers?[1].tabBarItem.image = #imageLiteral(resourceName: "dungeonTab").withRenderingMode(.alwaysOriginal)
 		viewControllers?[2].tabBarItem.image = #imageLiteral(resourceName: "mapTab").withRenderingMode(.alwaysOriginal)
+		viewControllers?[3].tabBarItem.image = #imageLiteral(resourceName: "settingsTab").withRenderingMode(.alwaysOriginal)
 	}
 }
 
@@ -95,5 +100,12 @@ extension RootViewController: DungeonViewControllerDelegate {
 extension RootViewController: MapViewControllerDelegate {
 	func mapViewController(_ viewController: MapViewController, didToggle location: Location) {
 		viewModel.toggle(location: location)
+	}
+}
+
+// MARK: - `` -
+extension RootViewController: SettingsViewControllerDelegate {
+	func settingsViewControllerDidReset(_ viewController: SettingsViewController) {
+		viewModel.reset()
 	}
 }

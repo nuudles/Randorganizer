@@ -17,6 +17,9 @@
 		30337F562027709B00BA986E /* ZoomImageView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303559D52024AE1300E4CEDE /* ZoomImageView.framework */; };
 		30337F58202775F100BA986E /* DungeonLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30337F57202775F100BA986E /* DungeonLocationView.swift */; };
 		30337F5A2027774A00BA986E /* Dungeon+World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30337F592027774A00BA986E /* Dungeon+World.swift */; };
+		3033B60C202B776B0042CC01 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3033B60B202B776B0042CC01 /* SettingsViewController.swift */; };
+		3033B60E202CBFB50042CC01 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3033B60D202CBFB40042CC01 /* Eureka.framework */; };
+		3033B610202CBFD20042CC01 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3033B60F202CBFD20042CC01 /* SettingsViewModel.swift */; };
 		303559D4202108A200E4CEDE /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303559D3202108A200E4CEDE /* Differentiator.framework */; };
 		303559DA202550AD00E4CEDE /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303559D9202550AD00E4CEDE /* Availability.swift */; };
 		303559DC202551B500E4CEDE /* Game+Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303559DB202551B500E4CEDE /* Game+Availability.swift */; };
@@ -66,6 +69,9 @@
 		30337F5420276B4300BA986E /* UIImage+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Color.swift"; sourceTree = "<group>"; };
 		30337F57202775F100BA986E /* DungeonLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonLocationView.swift; sourceTree = "<group>"; };
 		30337F592027774A00BA986E /* Dungeon+World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dungeon+World.swift"; sourceTree = "<group>"; };
+		3033B60B202B776B0042CC01 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		3033B60D202CBFB40042CC01 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		3033B60F202CBFD20042CC01 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		303559D3202108A200E4CEDE /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
 		303559D52024AE1300E4CEDE /* ZoomImageView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZoomImageView.framework; path = Carthage/Build/iOS/ZoomImageView.framework; sourceTree = "<group>"; };
 		303559D9202550AD00E4CEDE /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
@@ -119,12 +125,22 @@
 				30DEC57B201A6AE2008F6680 /* SnapKit.framework in Frameworks */,
 				30337F562027709B00BA986E /* ZoomImageView.framework in Frameworks */,
 				308A23EC202950E0001DA90B /* EasyTipView.framework in Frameworks */,
+				3033B60E202CBFB50042CC01 /* Eureka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3033B60A202B77620042CC01 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				3033B60B202B776B0042CC01 /* SettingsViewController.swift */,
+				3033B60F202CBFD20042CC01 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		30DEC540201A6804008F6680 = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +226,7 @@
 				30DEC570201A6A2C008F6680 /* Item */,
 				30DEC571201A6A2C008F6680 /* Map */,
 				30DEC572201A6A3B008F6680 /* Root */,
+				3033B60A202B77620042CC01 /* Settings */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -262,6 +279,7 @@
 		30DEC575201A6AD3008F6680 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3033B60D202CBFB40042CC01 /* Eureka.framework */,
 				308A23EB202950E0001DA90B /* EasyTipView.framework */,
 				303559D52024AE1300E4CEDE /* ZoomImageView.framework */,
 				303559D3202108A200E4CEDE /* Differentiator.framework */,
@@ -395,6 +413,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ZoomImageView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/EasyTipView.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Eureka.framework",
 			);
 			name = "Carthage Script";
 			outputPaths = (
@@ -404,6 +423,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Differentiator.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZoomImageView.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/EasyTipView.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Eureka.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -431,6 +451,7 @@
 				30F79434201A8AAF0045D782 /* ItemViewModel.swift in Sources */,
 				30F7943F201B774D0045D782 /* AppearanceHelper.swift in Sources */,
 				30337F5520276B4300BA986E /* UIImage+Color.swift in Sources */,
+				3033B610202CBFD20042CC01 /* SettingsViewModel.swift in Sources */,
 				30DEC574201A6A45008F6680 /* RootViewController.swift in Sources */,
 				30337F4F2026A7FB00BA986E /* World.swift in Sources */,
 				30F79438201B73740045D782 /* RootViewModel.swift in Sources */,
@@ -439,6 +460,7 @@
 				30392066201BA5C200DA0398 /* MapViewModel.swift in Sources */,
 				30DEC56C201A68D4008F6680 /* AppDelegate.swift in Sources */,
 				30DEC585201A6F3E008F6680 /* Item.swift in Sources */,
+				3033B60C202B776B0042CC01 /* SettingsViewController.swift in Sources */,
 				30392064201BA52800DA0398 /* DungeonViewModel.swift in Sources */,
 				30F79443201B78320045D782 /* UIFont+Randorganizer.swift in Sources */,
 				30392068201BB36300DA0398 /* DungeonConfiguration.swift in Sources */,

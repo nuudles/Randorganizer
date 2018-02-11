@@ -3,3 +3,4 @@ github "RxSwiftCommunity/RxDataSources" ~> 3.0
 github "SnapKit/SnapKit" ~> 4.0.0
 github "nuudles/ZoomImageView" "master"
 github "igorkislyuk/EasyTipView" "master"
+github "xmartlabs/Eureka" ~> 4.0

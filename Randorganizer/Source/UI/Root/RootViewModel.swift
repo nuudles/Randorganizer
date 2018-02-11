@@ -48,6 +48,10 @@ final class RootViewModel {
 	func toggle(location: Location) {
 		game.value.toggle(location: location)
 	}
+
+	func reset() {
+		game.value = Game()
+	}
 }
 
 // MARK: - `RxBinder` -
