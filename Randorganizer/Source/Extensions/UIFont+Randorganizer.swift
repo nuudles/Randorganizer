@@ -21,4 +21,8 @@ extension UIFont {
 	static func returnOfGanonFont(ofSize size: CGFloat) -> UIFont {
 		return UIFont(name: "ReturnOfGanonReg", size: size)!
 	}
+
+	static func pressStartFont(ofSize size: CGFloat) -> UIFont {
+		return UIFont(name: "PressStart2P", size: size)!
+	}
 }

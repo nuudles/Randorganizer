@@ -71,7 +71,7 @@ extension DungeonCollectionViewCell: ViewCustomizer {
 		chestButton.setBackgroundImage(#imageLiteral(resourceName: "keychest"), for: .normal)
 		chestButton.setBackgroundImage(#imageLiteral(resourceName: "keychest0"), for: .selected)
 		chestButton.setTitleColor(.black, for: .normal)
-		chestButton.titleLabel?.font = .boldSystemFont(ofSize: 15)
+		chestButton.titleLabel?.font = .pressStartFont(ofSize: 12)
 		chestButton.setTitle(nil, for: .selected)
 		chestButton.addTarget(self, action: #selector(chestButtonTapped), for: .touchUpInside)
 

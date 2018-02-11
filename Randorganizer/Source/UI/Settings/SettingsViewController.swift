@@ -48,7 +48,7 @@ extension SettingsViewController: ViewCustomizer {
 	private func setUpForm() {
 		ButtonRow.defaultCellSetup = { (cell, row) in
 			cell.contentView.backgroundColor = UIColor(.darkGray)
-			cell.textLabel?.font = UIFont.returnOfGanonFont(ofSize: 24)
+			cell.textLabel?.font = .returnOfGanonFont(ofSize: 30)
 
 			let selectedView = UIView()
 			selectedView.backgroundColor = UIColor(.darkGreen)
