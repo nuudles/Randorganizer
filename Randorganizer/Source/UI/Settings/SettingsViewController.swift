@@ -57,13 +57,26 @@ extension SettingsViewController: ViewCustomizer {
 		ButtonRow.defaultCellUpdate = { (cell, row) in
 			cell.textLabel?.textColor = UIColor(.triforceYellow)
 		}
-		form +++ Section("")
+		form
+			+++ Section("")
+			<<< ButtonRow {
+					$0.title = "Help"
+				}
+				.onCellSelection { [unowned self] (_, _) in
+					self.help()
+				}
+			+++ Section("")
 			<<< ButtonRow {
 					$0.title = "Reset"
 				}
 				.onCellSelection { [unowned self] (_, _) in
 					self.reset()
 				}
+	}
+
+	private func help() {
+		let viewController = HelpViewController()
+		navigationController?.pushViewController(viewController, animated: true)
 	}
 
 	private func reset() {

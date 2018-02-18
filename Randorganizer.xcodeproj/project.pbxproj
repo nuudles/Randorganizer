@@ -20,6 +20,8 @@
 		3033B60C202B776B0042CC01 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3033B60B202B776B0042CC01 /* SettingsViewController.swift */; };
 		3033B60E202CBFB50042CC01 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3033B60D202CBFB40042CC01 /* Eureka.framework */; };
 		3033B610202CBFD20042CC01 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3033B60F202CBFD20042CC01 /* SettingsViewModel.swift */; };
+		3033B6142030BAF50042CC01 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3033B6132030BAF50042CC01 /* HelpViewController.swift */; };
+		3033B6162030BC0F0042CC01 /* Help.html in Resources */ = {isa = PBXBuildFile; fileRef = 3033B6152030BC0F0042CC01 /* Help.html */; };
 		303559D4202108A200E4CEDE /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303559D3202108A200E4CEDE /* Differentiator.framework */; };
 		303559DA202550AD00E4CEDE /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303559D9202550AD00E4CEDE /* Availability.swift */; };
 		303559DC202551B500E4CEDE /* Game+Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303559DB202551B500E4CEDE /* Game+Availability.swift */; };
@@ -72,6 +74,8 @@
 		3033B60B202B776B0042CC01 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3033B60D202CBFB40042CC01 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		3033B60F202CBFD20042CC01 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		3033B6132030BAF50042CC01 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		3033B6152030BC0F0042CC01 /* Help.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Help.html; sourceTree = "<group>"; };
 		303559D3202108A200E4CEDE /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
 		303559D52024AE1300E4CEDE /* ZoomImageView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZoomImageView.framework; path = Carthage/Build/iOS/ZoomImageView.framework; sourceTree = "<group>"; };
 		303559D9202550AD00E4CEDE /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 		3033B60A202B77620042CC01 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				3033B6132030BAF50042CC01 /* HelpViewController.swift */,
 				3033B60B202B776B0042CC01 /* SettingsViewController.swift */,
 				3033B60F202CBFD20042CC01 /* SettingsViewModel.swift */,
 			);
@@ -174,6 +179,7 @@
 				30F79440201B78060045D782 /* Fonts */,
 				30DEC560201A68D4008F6680 /* LaunchScreen.storyboard */,
 				30DEC564201A68D4008F6680 /* Info.plist */,
+				3033B6152030BC0F0042CC01 /* Help.html */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30DEC568201A68D4008F6680 /* Assets.xcassets in Resources */,
+				3033B6162030BC0F0042CC01 /* Help.html in Resources */,
 				30DEC569201A68D4008F6680 /* LaunchScreen.storyboard in Resources */,
 				30F79441201B78060045D782 /* Fonts in Resources */,
 			);
@@ -442,6 +449,7 @@
 				30DEC589201A73D4008F6680 /* ItemViewController.swift in Sources */,
 				30DEC58E201A7B00008F6680 /* Dungeon.swift in Sources */,
 				3039206E201E144B00DA0398 /* ReusableView.swift in Sources */,
+				3033B6142030BAF50042CC01 /* HelpViewController.swift in Sources */,
 				30F79436201AC1890045D782 /* Game.swift in Sources */,
 				30DEC57E201A6BB3008F6680 /* ViewCustomizer.swift in Sources */,
 				30392072201E174500DA0398 /* DungeonCellViewModel.swift in Sources */,

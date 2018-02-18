@@ -1,0 +1,161 @@
+<html>
+	<meta name="viewport" content="width=device-width" />
+	<style type="text/css">
+		body {
+			background-color: black;
+			color: #888;
+			line-height: 1.5;
+			font-weight: 400;
+			font-family: Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;
+		}
+		h5, h6 {
+			margin-bottom: 0.5rem;
+			font-weight: 500;
+			line-height: 1.2;
+			color: white;
+		}
+		h5 {
+			font-size: 1.5rem;
+		}
+		h6 {
+			font-size: 0.875rem;
+		}
+		p {
+			margin-top: 0;
+			margin-bottom: 1rem;
+		}
+		.available {
+			--availability-fill: cyan;
+		}
+		.unavailable {
+			--availability-fill: red;
+		}
+		.visible {
+			--availability-fill: orange;
+		}
+		.possible {
+			--availability-fill: yellow;
+		}
+		.glitches {
+			--availability-fill: cyan;
+		}
+		.glitchesVisible {
+			--availability-fill: orange;
+		}
+		.claimed {
+			--availability-fill: gray;
+		}
+		tr > td:first-child + td {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+		rect {
+			fill: var(--availability-fill);
+		}
+	</style>
+	<body>
+		<div class="modal-content">
+			<div class="modal-body">
+				<h5>General Usage</h5>
+				<p>
+				This tracker is based heavily on the Stumpy tracker by Wolfman2000. It shares much of the logic and functionality. As of right now Randorganizer does not support keysanity or entrance/boss shuffles.
+				</p>
+				<h6>Items</h6>
+				<p>
+				Tap on an item to activate it.
+				Continue to tap to either turn the item off or
+				cycle through to the next, depending on the item in question.
+				</p>
+				<h6>Bosses / Dungeons</h6>
+				<ul>
+					<li>
+						Tap on the chest to decrease the number of available items.
+						The counts will reset after going to 0.
+					</li>
+					<li>
+						Tap on the black question mark circle to mark the reward you get
+						for beating the dungeon. It can be (in order) a green pendant, a normal pendant,
+						a normal crystal, or a pyramid (red) crystal.
+					</li>
+					<li>
+						Tap on the gold question mark circle to mark which medallion
+						is required to enter the dungeon. It can be (in order) Bombos, Ether, or Quake.
+					</li>
+					<li>
+						Tap on the boss to mark the boss as defeated.
+					</li>
+				</ul>
+				<h6>Map</h6>
+				<p>
+				The map has many squares on it: these represent locations where
+				items are found. If it is an item outside of a dungeon, clicking
+				on the square marks it as found. Dungeons cannot be marked as such:
+				instead, refer to the boss guide above. Note that boss squares
+				are double squares: the outer square represents the possibility of taking
+				every treasure from the dungeon, while the inner square focuses solely on
+				the boss of the dungeon.
+				</p>
+				<h6>Map Key</h6>
+				<p>The color guide for the map is below.</p>
+				<table class="table table-bordered table-hover table-sm">
+					<thead class="thead">
+						<tr>
+							<th scope="col">Description</th>
+							<th scope="col">Color</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Available: This can be grabbed now.</td>
+							<td class="available">
+								<svg viewBox="0 0 100 100">
+									<rect height="100%" width="100%"></rect>
+								</svg>
+							</td>
+						</tr>
+						<tr>
+							<td>Visible: This can be seen, but not taken.</td>
+							<td class="visible">
+								<svg viewBox="0 0 100 100">
+									<rect height="100%" width="100%"></rect>
+								</svg>
+							</td>
+						</tr>
+						<tr>
+							<td>Possible: This may be possible depending on other requirements.</td>
+							<td class="possible">
+								<svg viewBox="0 0 100 100">
+									<rect height="100%" width="100%"></rect>
+								</svg>
+							</td>
+						</tr>
+						<tr>
+							<td>Unavailable: This cannot be gotten at all.</td>
+							<td class="unavailable">
+								<svg viewBox="0 0 100 100">
+									<rect height="100%" width="100%"></rect>
+								</svg>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>Claimed: This has already been marked off.</td>
+							<td class="claimed">
+								<svg viewBox="0 0 100 100">
+									<rect height="100%" width="100%"></rect>
+								</svg>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+				If glitches or sequence breaks can be used to get items prematurely,
+				the surrounding square color will be white instead of black.
+				</p>
+				<h5>Settings</h5>
+				<h6>Reset</h6>
+				<p>This allows you to reset the game, clearing all items collected, locations visited, and dungeon information.</p>
+			</div>
+		</div>
+	</body>
+</html>
