@@ -84,9 +84,20 @@ final class ItemViewController: UIViewController {
 
 	// MARK: - Lifecycle -
 	override func viewDidLoad() {
+		super.viewDidLoad()
+
 		instantiateView()
 	}
 
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+
+		if !bannerView.isHidden {
+			bannerView.load(GADRequest())
+		}
+	}
+
+	// MARK: - Private Functions -
 	private func updateButtons(with selectedItems: Set<Item>) {
 		buttons.forEach {
 			let toggle = ItemViewController.toggles[$0.tag]
@@ -127,6 +138,7 @@ extension ItemViewController: ViewCustomizer {
 	private func addBannerView() {
 		stackView.addArrangedSubview(bannerView)
 		bannerView.adUnitID = Secrets.googleAdMobAdUnitId
+		bannerView.rootViewController = self
 
 		bannerView.snp.makeConstraints { (make) in
 			make.height.equalTo(kGADAdSizeBanner.size.height)
@@ -171,6 +183,13 @@ extension ItemViewController: RxBinder {
 		viewModel.adsEnabled
 			.map { !$0 }
 			.bind(to: bannerView.rx.isHidden)
+			.disposed(by: disposeBag)
+
+		viewModel.adsEnabled
+			.distinctUntilChanged()
+			.skip(1)
+			.filter { $0 }
+			.subscribe(onNext: { [unowned self] _ in self.bannerView.load(GADRequest()) })
 			.disposed(by: disposeBag)
 
 		viewModel.selectedItems
