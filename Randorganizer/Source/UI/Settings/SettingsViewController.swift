@@ -21,6 +21,7 @@ final class SettingsViewController: FormViewController {
 	private let disposeBag = DisposeBag()
 	private let viewModel: SettingsViewModel
 	private let adsRow = SwitchRow()
+	private let defaultBombsRow = SwitchRow()
 	weak var delegate: SettingsViewControllerDelegate?
 
 	// MARK: - Initializations -
@@ -48,7 +49,9 @@ final class SettingsViewController: FormViewController {
 extension SettingsViewController: ViewCustomizer {
 	func styleView() {
 		tableView.backgroundColor = .black
-		tableView.separatorStyle = .none
+		tableView.separatorStyle = .singleLine
+		tableView.separatorColor = .black
+		tableView.separatorInset = .zero
 	}
 
 	func addSubviews() {
@@ -79,6 +82,7 @@ extension SettingsViewController: ViewCustomizer {
 			cell.textLabel?.textColor = UIColor(.triforceYellow)
 		}
 
+		defaultBombsRow.title = "Default Bombs Selected"
 		adsRow.title = "Enable Ads"
 
 		form
@@ -89,13 +93,15 @@ extension SettingsViewController: ViewCustomizer {
 				.onCellSelection { [unowned self] (_, _) in
 					self.help()
 				}
-			+++ Section("")
 			<<< ButtonRow {
 					$0.title = "Reset"
 				}
 				.onCellSelection { [unowned self] (_, _) in
 					self.reset()
 				}
+			+++ Section("Items")
+			<<< defaultBombsRow
+			+++ Section("")
 			+++ Section("Advertisements")
 			<<< adsRow
 	}
@@ -127,6 +133,17 @@ extension SettingsViewController: RxBinder {
 		adsRow.rx.value
 			.map { $0 ?? false }
 			.subscribe(onNext: { [unowned self] in self.delegate?.settingsViewController(self, didSetAdsEnabled: $0) })
+			.disposed(by: disposeBag)
+
+		viewModel.defaultBombsSelected
+			.bind(to: defaultBombsRow.rx.value)
+			.disposed(by: disposeBag)
+
+		defaultBombsRow.rx.value
+			.map { $0 ?? false }
+			.subscribe(onNext: { [unowned self] in
+				self.delegate?.settingsViewController(self, didSetDefaultBombsSelected: $0)
+			})
 			.disposed(by: disposeBag)
 	}
 }

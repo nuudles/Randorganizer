@@ -14,6 +14,7 @@ final class SettingsViewModel {
 	private let disposeBag = DisposeBag()
 	private let settings: Observable<Settings>
 	let adsEnabled = ReplaySubject<Bool>.create(bufferSize: 1)
+	let defaultBombsSelected = ReplaySubject<Bool>.create(bufferSize: 1)
 
 	// MARK: - Initializations -
 	init(settings: Observable<Settings>) {
@@ -29,6 +30,11 @@ extension SettingsViewModel: RxBinder {
 		settings.take(1)
 			.map { $0.adsEnabled }
 			.bind(to: adsEnabled)
+			.disposed(by: disposeBag)
+
+		settings.take(1)
+			.map { $0.defaultBombsSelected }
+			.bind(to: defaultBombsSelected)
 			.disposed(by: disposeBag)
 	}
 }

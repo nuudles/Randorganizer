@@ -14,7 +14,7 @@ final class RootViewModel {
 	// MARK: - Properties -
 	private let disposeBag = DisposeBag()
 
-	private let game = Variable(Game())
+	private let game: Variable<Game>
 	let settings: Variable<Settings>
 	let selectedItems = ReplaySubject<Set<Item>>.create(bufferSize: 1)
 	let dungeons = ReplaySubject<[DungeonConfiguration]>.create(bufferSize: 1)
@@ -25,10 +25,15 @@ final class RootViewModel {
 		get { return settings.value.adsEnabled }
 		set { settings.value.adsEnabled = newValue }
 	}
+	var defaultBombsSelected: Bool {
+		get { return settings.value.defaultBombsSelected }
+		set { settings.value.defaultBombsSelected = newValue }
+	}
 
 	// MARK: - Initialization -
 	init() {
 		settings = Variable(Settings.read() ?? Settings())
+		game = Variable(Game(settings: settings.value))
 
 		setUpBindings()
 	}
@@ -59,7 +64,7 @@ final class RootViewModel {
 	}
 
 	func reset() {
-		game.value = Game()
+		game.value = Game(settings: settings.value)
 	}
 }
 
@@ -104,6 +109,14 @@ extension RootViewModel: RxBinder {
 
 		settings.asObservable()
 			.subscribe(onNext: { $0.write() })
+			.disposed(by: disposeBag)
+
+		settings.asObservable()
+			.skip(1)
+			.map { $0.defaultBombsSelected }
+			.distinctUntilChanged()
+			.filter { [unowned self] in $0 && !self.game.value.selectedItems.contains(.bomb) }
+			.subscribe(onNext: { [unowned self] _ in self.toggle(item: .bomb) })
 			.disposed(by: disposeBag)
 	}
 }

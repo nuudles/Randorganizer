@@ -38,6 +38,13 @@ struct Game {
 		DungeonConfiguration(dungeon: $0, totalChests: $0.totalChestCount(for: .normal))
 	}
 
+	// MARK: - Initializations -
+	init(settings: Settings) {
+		if settings.defaultBombsSelected {
+			selectedItems.insert(.bomb)
+		}
+	}
+
 	// MARK: - Internal Functions -
 	mutating func toggle(item: Item) {
 		guard let progressive = Game.progressives[item] else {

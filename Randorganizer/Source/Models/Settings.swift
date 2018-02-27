@@ -10,4 +10,5 @@ import Foundation
 
 struct Settings: DefaultStorable, Codable {
 	var adsEnabled = false
+	var defaultBombsSelected = false
 }
