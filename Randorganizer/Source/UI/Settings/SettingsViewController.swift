@@ -99,9 +99,9 @@ extension SettingsViewController: ViewCustomizer {
 				.onCellSelection { [unowned self] (_, _) in
 					self.reset()
 				}
-			+++ Section("Items")
+			+++ Section("")
 			<<< defaultBombsRow
-			+++ Section("Advertisements")
+			+++ Section("")
 			<<< adsRow
 	}
 
