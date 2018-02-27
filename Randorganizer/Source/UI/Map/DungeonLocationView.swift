@@ -14,6 +14,7 @@ final class DungeonLocationView: UIView {
 	// MARK: - Properties -
 	private let imageBackgroundView = UIView()
 	private let imageView = UIImageView()
+	private let rewardImageView = UIImageView()
 
 	// MARK: - Initializations -
 	init(dungeon: Dungeon) {
@@ -31,6 +32,8 @@ final class DungeonLocationView: UIView {
 	// MARK: - Private Functions -
 	private func update(with dungeon: Dungeon) {
 		imageView.image = dungeon.image
+
+		rewardImageView.isHidden = (dungeon == .castleTower || dungeon == .ganonsTower)
 	}
 
 	// MARK: - Internal Functions -
@@ -57,6 +60,19 @@ final class DungeonLocationView: UIView {
 		imageBackgroundView.layer.borderColor = (bossAvailability == .glitches || bossAvailability == .glitchesVisible)
 			? UIColor.white.cgColor : UIColor.black.cgColor
 	}
+
+	func update(with reward: DungeonConfiguration.Reward?) {
+		let image: UIImage
+
+		switch reward {
+		case .some(.greenPendant): image = #imageLiteral(resourceName: "reward-greenPendant")
+		case .some(.otherPendant): image = #imageLiteral(resourceName: "reward-standardPendant")
+		case .some(.crystal): image = #imageLiteral(resourceName: "reward-standardCrystal")
+		case .some(.redCrystal): image = #imageLiteral(resourceName: "reward-fairyCrystal")
+		default: image = #imageLiteral(resourceName: "reward-unknown")
+		}
+		rewardImageView.image = image
+	}
 }
 
 // MARK: - `ViewCustomizer` -
@@ -67,6 +83,7 @@ extension DungeonLocationView: ViewCustomizer {
 
 	func addSubviews() {
 		addImageView()
+		addRewardImageView()
 	}
 
 	private func addImageView() {
@@ -81,6 +98,16 @@ extension DungeonLocationView: ViewCustomizer {
 		}
 		imageView.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview().inset(3.0)
+		}
+	}
+
+	private func addRewardImageView() {
+		addSubview(rewardImageView)
+
+		rewardImageView.snp.makeConstraints { (make) in
+			make.centerX.equalTo(imageView.snp.trailing)
+			make.centerY.equalTo(imageView.snp.top)
+			make.width.height.equalTo(10)
 		}
 	}
 }

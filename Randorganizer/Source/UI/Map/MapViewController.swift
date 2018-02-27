@@ -32,9 +32,11 @@ final class MapViewController: UIViewController {
 
 	// MARK: - Initialization -
 	init(locationAvailabilities: Observable<[Location: Availability]>,
-		 chestAndBossAvailabilities: Observable<[Dungeon: (Availability, Availability)]>) {
+		 chestAndBossAvailabilities: Observable<[Dungeon: (Availability, Availability)]>,
+		 dungeons: Observable<[DungeonConfiguration]>) {
 		self.viewModel = MapViewModel(locationAvailabilities: locationAvailabilities,
-									  chestAndBossAvailabilities: chestAndBossAvailabilities)
+									  chestAndBossAvailabilities: chestAndBossAvailabilities,
+									  dungeons: dungeons)
 
 		lightWorldButtons = Location.lightWorldLocations
 			.reduce([LocationButton: Location]()) { (result, location) in
@@ -240,6 +242,18 @@ extension MapViewController: RxBinder {
 					$0.forEach { (dungeon, availabilities) in
 						let dungeonView = self.lightWorldDungeonViews[dungeon] ?? self.darkWorldDungeonViews[dungeon]
 						dungeonView?.update(with: availabilities)
+					}
+				}
+			)
+			.disposed(by: disposeBag)
+
+		viewModel.dungeons
+			.subscribe(
+				onNext: { [unowned self] (dungeons) in
+					dungeons.forEach {
+						let dungeonView = self.lightWorldDungeonViews[$0.dungeon] ??
+							self.darkWorldDungeonViews[$0.dungeon]
+						dungeonView?.update(with: $0.reward)
 					}
 				}
 			)
