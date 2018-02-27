@@ -15,11 +15,18 @@ struct AppearanceHelper {
 			NSAttributedStringKey.foregroundColor: UIColor(.triforceYellow)
 		]
 
+		UIBarButtonItem.appearance().setTitleTextAttributes([
+				NSAttributedStringKey.font: UIFont.pressStartFont(ofSize: 10)
+			], for: .normal)
+
 		UITabBar.appearance().barTintColor = .black
 		UITabBar.appearance().tintColor = UIColor(.triforceYellow)
 		UITabBarItem.appearance().setTitleTextAttributes([
 				NSAttributedStringKey.font: UIFont.returnOfGanonFont(ofSize: 14)
 			], for: .normal)
+
+		UISwitch.appearance().tintColor = UIColor(.triforceYellow)
+		UISwitch.appearance().onTintColor = UIColor(.triforceYellow)
 	}
 
 	// MARK: - Initializations -

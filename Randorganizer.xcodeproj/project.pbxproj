@@ -20,11 +20,16 @@
 		3033B60C202B776B0042CC01 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3033B60B202B776B0042CC01 /* SettingsViewController.swift */; };
 		3033B60E202CBFB50042CC01 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3033B60D202CBFB40042CC01 /* Eureka.framework */; };
 		3033B610202CBFD20042CC01 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3033B60F202CBFD20042CC01 /* SettingsViewModel.swift */; };
+		3033B612202CBFFD0042CC01 /* Eureka+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3033B611202CBFFD0042CC01 /* Eureka+Rx.swift */; };
 		3033B6142030BAF50042CC01 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3033B6132030BAF50042CC01 /* HelpViewController.swift */; };
 		3033B6162030BC0F0042CC01 /* Help.html in Resources */ = {isa = PBXBuildFile; fileRef = 3033B6152030BC0F0042CC01 /* Help.html */; };
 		303559D4202108A200E4CEDE /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 303559D3202108A200E4CEDE /* Differentiator.framework */; };
 		303559DA202550AD00E4CEDE /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303559D9202550AD00E4CEDE /* Availability.swift */; };
 		303559DC202551B500E4CEDE /* Game+Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303559DB202551B500E4CEDE /* Game+Availability.swift */; };
+		3038BBB02039F2F200326029 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3038BBAF2039F2F100326029 /* GoogleMobileAds.framework */; };
+		3038BBB22039FC2900326029 /* Default.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3038BBB12039FC2900326029 /* Default.framework */; };
+		3038BBB4203A119A00326029 /* GoogleMobileAdsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3038BBB3203A119A00326029 /* GoogleMobileAdsHelper.swift */; };
+		3038BBB8203A4F3D00326029 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3038BBB7203A4F3D00326029 /* Secrets.swift */; };
 		30392064201BA52800DA0398 /* DungeonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392063201BA52800DA0398 /* DungeonViewModel.swift */; };
 		30392066201BA5C200DA0398 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392065201BA5C200DA0398 /* MapViewModel.swift */; };
 		30392068201BB36300DA0398 /* DungeonConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392067201BB36300DA0398 /* DungeonConfiguration.swift */; };
@@ -34,6 +39,7 @@
 		30392070201E168000DA0398 /* UIView+Instantiate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3039206F201E168000DA0398 /* UIView+Instantiate.swift */; };
 		30392072201E174500DA0398 /* DungeonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392071201E174500DA0398 /* DungeonCellViewModel.swift */; };
 		30392074201F9B2000DA0398 /* Array+ReplaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392073201F9B2000DA0398 /* Array+ReplaceItem.swift */; };
+		306AD388203E6E14005595F0 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306AD387203E6E14005595F0 /* Settings.swift */; };
 		308A23EC202950E0001DA90B /* EasyTipView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A23EB202950E0001DA90B /* EasyTipView.framework */; };
 		30DEC568201A68D4008F6680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DEC55F201A68D4008F6680 /* Assets.xcassets */; };
 		30DEC569201A68D4008F6680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DEC560201A68D4008F6680 /* LaunchScreen.storyboard */; };
@@ -74,12 +80,17 @@
 		3033B60B202B776B0042CC01 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3033B60D202CBFB40042CC01 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		3033B60F202CBFD20042CC01 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		3033B611202CBFFD0042CC01 /* Eureka+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Eureka+Rx.swift"; sourceTree = "<group>"; };
 		3033B6132030BAF50042CC01 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		3033B6152030BC0F0042CC01 /* Help.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Help.html; sourceTree = "<group>"; };
 		303559D3202108A200E4CEDE /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
 		303559D52024AE1300E4CEDE /* ZoomImageView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZoomImageView.framework; path = Carthage/Build/iOS/ZoomImageView.framework; sourceTree = "<group>"; };
 		303559D9202550AD00E4CEDE /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
 		303559DB202551B500E4CEDE /* Game+Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+Availability.swift"; sourceTree = "<group>"; };
+		3038BBAF2039F2F100326029 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Frameworks/GoogleMobileAds.framework; sourceTree = "<group>"; };
+		3038BBB12039FC2900326029 /* Default.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Default.framework; path = Carthage/Build/iOS/Default.framework; sourceTree = "<group>"; };
+		3038BBB3203A119A00326029 /* GoogleMobileAdsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMobileAdsHelper.swift; sourceTree = "<group>"; };
+		3038BBB7203A4F3D00326029 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		30392063201BA52800DA0398 /* DungeonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonViewModel.swift; sourceTree = "<group>"; };
 		30392065201BA5C200DA0398 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		30392067201BB36300DA0398 /* DungeonConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonConfiguration.swift; sourceTree = "<group>"; };
@@ -89,6 +100,7 @@
 		3039206F201E168000DA0398 /* UIView+Instantiate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Instantiate.swift"; sourceTree = "<group>"; };
 		30392071201E174500DA0398 /* DungeonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DungeonCellViewModel.swift; sourceTree = "<group>"; };
 		30392073201F9B2000DA0398 /* Array+ReplaceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ReplaceItem.swift"; sourceTree = "<group>"; };
+		306AD387203E6E14005595F0 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		308A23EB202950E0001DA90B /* EasyTipView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyTipView.framework; path = Carthage/Build/iOS/EasyTipView.framework; sourceTree = "<group>"; };
 		30DEC549201A6804008F6680 /* Randorganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Randorganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DEC55F201A68D4008F6680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,6 +142,8 @@
 				30337F562027709B00BA986E /* ZoomImageView.framework in Frameworks */,
 				308A23EC202950E0001DA90B /* EasyTipView.framework in Frameworks */,
 				3033B60E202CBFB50042CC01 /* Eureka.framework in Frameworks */,
+				3038BBB02039F2F200326029 /* GoogleMobileAds.framework in Frameworks */,
+				3038BBB22039FC2900326029 /* Default.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +225,7 @@
 				30392073201F9B2000DA0398 /* Array+ReplaceItem.swift */,
 				30F79431201A899C0045D782 /* Collection+Chunk.swift */,
 				30337F592027774A00BA986E /* Dungeon+World.swift */,
+				3033B611202CBFFD0042CC01 /* Eureka+Rx.swift */,
 				303559DB202551B500E4CEDE /* Game+Availability.swift */,
 				30337F502026A81B00BA986E /* Location+World.swift */,
 				3039206B201E141A00DA0398 /* UICollectionView+ReusableView.swift */,
@@ -249,6 +264,7 @@
 				30DEC586201A7019008F6680 /* Location.swift */,
 				3039206D201E144B00DA0398 /* ReusableView.swift */,
 				30337F4E2026A7FB00BA986E /* World.swift */,
+				306AD387203E6E14005595F0 /* Settings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,6 +301,8 @@
 		30DEC575201A6AD3008F6680 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3038BBB12039FC2900326029 /* Default.framework */,
+				3038BBAF2039F2F100326029 /* GoogleMobileAds.framework */,
 				3033B60D202CBFB40042CC01 /* Eureka.framework */,
 				308A23EB202950E0001DA90B /* EasyTipView.framework */,
 				303559D52024AE1300E4CEDE /* ZoomImageView.framework */,
@@ -320,6 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				30F7943E201B774D0045D782 /* AppearanceHelper.swift */,
+				3038BBB3203A119A00326029 /* GoogleMobileAdsHelper.swift */,
+				3038BBB7203A4F3D00326029 /* Secrets.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -421,6 +441,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/ZoomImageView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/EasyTipView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Eureka.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Default.framework",
 			);
 			name = "Carthage Script";
 			outputPaths = (
@@ -431,6 +452,7 @@
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ZoomImageView.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/EasyTipView.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Eureka.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Default.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -443,6 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3033B612202CBFFD0042CC01 /* Eureka+Rx.swift in Sources */,
 				30392070201E168000DA0398 /* UIView+Instantiate.swift in Sources */,
 				300CA96F202A7F4E0065A3E7 /* UIColor+Color.swift in Sources */,
 				30DEC582201A6CD0008F6680 /* UIViewController+Instantiate.swift in Sources */,
@@ -463,8 +486,10 @@
 				30DEC574201A6A45008F6680 /* RootViewController.swift in Sources */,
 				30337F4F2026A7FB00BA986E /* World.swift in Sources */,
 				30F79438201B73740045D782 /* RootViewModel.swift in Sources */,
+				3038BBB8203A4F3D00326029 /* Secrets.swift in Sources */,
 				30337F5320274F9500BA986E /* LocationButton.swift in Sources */,
 				30337F58202775F100BA986E /* DungeonLocationView.swift in Sources */,
+				306AD388203E6E14005595F0 /* Settings.swift in Sources */,
 				30392066201BA5C200DA0398 /* MapViewModel.swift in Sources */,
 				30DEC56C201A68D4008F6680 /* AppDelegate.swift in Sources */,
 				30DEC585201A6F3E008F6680 /* Item.swift in Sources */,
@@ -472,6 +497,7 @@
 				30392064201BA52800DA0398 /* DungeonViewModel.swift in Sources */,
 				30F79443201B78320045D782 /* UIFont+Randorganizer.swift in Sources */,
 				30392068201BB36300DA0398 /* DungeonConfiguration.swift in Sources */,
+				3038BBB4203A119A00326029 /* GoogleMobileAdsHelper.swift in Sources */,
 				30337F4D2026A4EF00BA986E /* ZoomImageView+Rx.swift in Sources */,
 				30337F512026A81B00BA986E /* Location+World.swift in Sources */,
 				303559DA202550AD00E4CEDE /* Availability.swift in Sources */,
@@ -617,6 +643,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Randorganizer/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -637,6 +664,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Randorganizer/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

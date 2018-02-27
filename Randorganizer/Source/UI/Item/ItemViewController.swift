@@ -5,6 +5,7 @@
 //  Created by Christopher Luu on 1/25/18.
 //
 
+import GoogleMobileAds
 import SnapKit
 import RxSwift
 import UIKit
@@ -55,10 +56,12 @@ final class ItemViewController: UIViewController {
 	weak var delegate: ItemViewControllerDelegate?
 
 	private let stackView = UIStackView()
+	private let itemStackView = UIStackView()
+	private let bannerView = GADBannerView(adSize: kGADAdSizeBanner)
 	private let buttons: [UIButton]
 
 	// MARK: - Initializations -
-	init(selectedItems: Observable<Set<Item>>) {
+	init(settings: Observable<Settings>, selectedItems: Observable<Set<Item>>) {
 		var buttons = [UIButton]()
 		ItemViewController.toggles.enumerated().forEach { (index, _) in
 			let button = UIButton()
@@ -68,7 +71,7 @@ final class ItemViewController: UIViewController {
 
 		self.buttons = buttons
 
-		viewModel = ItemViewModel(selectedItems: selectedItems)
+		viewModel = ItemViewModel(settings: settings, selectedItems: selectedItems)
 
 		super.init(nibName: nil, bundle: nil)
 
@@ -102,6 +105,8 @@ extension ItemViewController: ViewCustomizer {
 
 	func addSubviews() {
 		addStackView()
+		addBannerView()
+		addItemStackView()
 		addButtons()
 	}
 
@@ -110,13 +115,30 @@ extension ItemViewController: ViewCustomizer {
 		stackView.axis = .vertical
 		stackView.spacing = 0
 		stackView.alignment = .fill
-		stackView.distribution = .fillEqually
+		stackView.distribution = .fillProportionally
 
 		stackView.snp.makeConstraints { (make) in
 			make.top.equalTo(safeTop)
 			make.bottom.equalTo(safeBottom)
 			make.leading.trailing.equalToSuperview()
 		}
+	}
+
+	private func addBannerView() {
+		stackView.addArrangedSubview(bannerView)
+		bannerView.adUnitID = Secrets.googleAdMobAdUnitId
+
+		bannerView.snp.makeConstraints { (make) in
+			make.height.equalTo(kGADAdSizeBanner.size.height)
+		}
+	}
+
+	private func addItemStackView() {
+		stackView.addArrangedSubview(itemStackView)
+		itemStackView.axis = .vertical
+		itemStackView.spacing = 0
+		itemStackView.alignment = .fill
+		itemStackView.distribution = .fillEqually
 	}
 
 	private func addButtons() {
@@ -133,7 +155,7 @@ extension ItemViewController: ViewCustomizer {
 					rowStackView.addArrangedSubview(button)
 				}
 
-				stackView.addArrangedSubview(rowStackView)
+				itemStackView.addArrangedSubview(rowStackView)
 			}
 	}
 
@@ -146,6 +168,11 @@ extension ItemViewController: ViewCustomizer {
 // MARK: - `RxBinder` -
 extension ItemViewController: RxBinder {
 	func setUpBindings() {
+		viewModel.adsEnabled
+			.map { !$0 }
+			.bind(to: bannerView.rx.isHidden)
+			.disposed(by: disposeBag)
+
 		viewModel.selectedItems
 			.subscribe(onNext: { [unowned self] in self.updateButtons(with: $0) })
 			.disposed(by: disposeBag)

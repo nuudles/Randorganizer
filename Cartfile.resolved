@@ -1,4 +1,5 @@
-github "ReactiveX/RxSwift" "4.1.1"
+github "Nirma/Default" "2.1.0"
+github "ReactiveX/RxSwift" "4.1.2"
 github "RxSwiftCommunity/RxDataSources" "3.0.2"
 github "SnapKit/SnapKit" "4.0.0"
 github "igorkislyuk/EasyTipView" "11de6146d447582abe0304bb287600ff93abb23a"

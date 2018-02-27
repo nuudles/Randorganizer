@@ -5,6 +5,7 @@
 //  Created by Christopher Luu on 1/26/18.
 //
 
+import Default
 import Foundation
 import RxCocoa
 import RxSwift
@@ -14,13 +15,21 @@ final class RootViewModel {
 	private let disposeBag = DisposeBag()
 
 	private let game = Variable(Game())
+	let settings: Variable<Settings>
 	let selectedItems = ReplaySubject<Set<Item>>.create(bufferSize: 1)
 	let dungeons = ReplaySubject<[DungeonConfiguration]>.create(bufferSize: 1)
 	let locationAvailabilities = ReplaySubject<[Location: Availability]>.create(bufferSize: 1)
 	let chestAndBossAvailabilities = ReplaySubject<[Dungeon: (Availability, Availability)]>.create(bufferSize: 1)
 
+	var adsEnabled: Bool {
+		get { return settings.value.adsEnabled }
+		set { settings.value.adsEnabled = newValue }
+	}
+
 	// MARK: - Initialization -
 	init() {
+		settings = Variable(Settings.read() ?? Settings())
+
 		setUpBindings()
 	}
 
@@ -91,6 +100,10 @@ extension RootViewModel: RxBinder {
 				return availabilities
 			}
 			.bind(to: chestAndBossAvailabilities)
+			.disposed(by: disposeBag)
+
+		settings.asObservable()
+			.subscribe(onNext: { $0.write() })
 			.disposed(by: disposeBag)
 	}
 }

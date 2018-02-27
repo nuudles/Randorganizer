@@ -12,11 +12,16 @@ final class ItemViewModel {
 	// MARK: - properties -
 	private let disposeBag = DisposeBag()
 
+	private let settings: Observable<Settings>
 	let selectedItems: Observable<Set<Item>>
+	let adsEnabled = ReplaySubject<Bool>.create(bufferSize: 1)
 
 	// MARK: - initialization -
-	init(selectedItems: Observable<Set<Item>>) {
+	init(settings: Observable<Settings>, selectedItems: Observable<Set<Item>>) {
+		self.settings = settings
 		self.selectedItems = selectedItems
+
+		setUpBindings()
 	}
 
 	// MARK: - private functions -
@@ -25,5 +30,8 @@ final class ItemViewModel {
 // MARK: - `RxBinder` -
 extension ItemViewModel: RxBinder {
 	func setUpBindings() {
+		settings.map { $0.adsEnabled }
+			.bind(to: adsEnabled)
+			.disposed(by: disposeBag)
 	}
 }

@@ -21,11 +21,12 @@ final class RootViewController: UITabBarController {
 
 	// MARK: - Initialization -
 	init() {
-		itemViewController = ItemViewController(selectedItems: viewModel.selectedItems)
+		itemViewController = ItemViewController(settings: viewModel.settings.asObservable(),
+												selectedItems: viewModel.selectedItems)
 		dungeonViewController = DungeonViewController(dungeons: viewModel.dungeons)
 		mapViewController = MapViewController(locationAvailabilities: viewModel.locationAvailabilities,
 											  chestAndBossAvailabilities: viewModel.chestAndBossAvailabilities)
-		settingsViewController = SettingsViewController()
+		settingsViewController = SettingsViewController(settings: viewModel.settings.asObservable())
 
 		super.init(nibName: nil, bundle: nil)
 
@@ -103,9 +104,18 @@ extension RootViewController: MapViewControllerDelegate {
 	}
 }
 
-// MARK: - `` -
+// MARK: - `SettingsViewControllerDelegate` -
 extension RootViewController: SettingsViewControllerDelegate {
 	func settingsViewControllerDidReset(_ viewController: SettingsViewController) {
 		viewModel.reset()
+	}
+
+	func settingsViewController(_ viewController: SettingsViewController, didSetAdsEnabled adsEnabled: Bool) {
+		viewModel.adsEnabled = adsEnabled
+	}
+
+	func settingsViewController(_ viewController: SettingsViewController,
+								didSetDefaultBombsSelected defaultBombsSelected: Bool) {
+		viewModel.defaultBombsSelected = defaultBombsSelected
 	}
 }

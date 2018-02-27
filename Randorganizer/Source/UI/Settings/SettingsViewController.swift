@@ -6,17 +6,27 @@
 //
 
 import Eureka
+import RxSwift
 import UIKit
 
 protocol SettingsViewControllerDelegate: class {
 	func settingsViewControllerDidReset(_ viewController: SettingsViewController)
+	func settingsViewController(_ viewController: SettingsViewController, didSetAdsEnabled adsEnabled: Bool)
+	func settingsViewController(_ viewController: SettingsViewController,
+								didSetDefaultBombsSelected defaultBombsSelected: Bool)
 }
 
 final class SettingsViewController: FormViewController {
 	// MARK: - Properties -
+	private let disposeBag = DisposeBag()
+	private let viewModel: SettingsViewModel
+	private let adsRow = SwitchRow()
 	weak var delegate: SettingsViewControllerDelegate?
+
 	// MARK: - Initializations -
-	init() {
+	init(settings: Observable<Settings>) {
+		viewModel = SettingsViewModel(settings: settings)
+
 		super.init(nibName: nil, bundle: nil)
 
 		title = "Settings"
@@ -47,7 +57,7 @@ extension SettingsViewController: ViewCustomizer {
 
 	private func setUpForm() {
 		ButtonRow.defaultCellSetup = { (cell, row) in
-			cell.contentView.backgroundColor = UIColor(.darkGray)
+			cell.backgroundColor = UIColor(.darkGray)
 			cell.textLabel?.font = .returnOfGanonFont(ofSize: 30)
 
 			let selectedView = UIView()
@@ -57,6 +67,20 @@ extension SettingsViewController: ViewCustomizer {
 		ButtonRow.defaultCellUpdate = { (cell, row) in
 			cell.textLabel?.textColor = UIColor(.triforceYellow)
 		}
+		SwitchRow.defaultCellSetup = { (cell, row) in
+			cell.backgroundColor = UIColor(.darkGray)
+			cell.textLabel?.font = .returnOfGanonFont(ofSize: 26)
+
+			let selectedView = UIView()
+			selectedView.backgroundColor = UIColor(.darkGreen)
+			cell.selectedBackgroundView = selectedView
+		}
+		SwitchRow.defaultCellUpdate = { (cell, row) in
+			cell.textLabel?.textColor = UIColor(.triforceYellow)
+		}
+
+		adsRow.title = "Enable Ads"
+
 		form
 			+++ Section("")
 			<<< ButtonRow {
@@ -72,6 +96,8 @@ extension SettingsViewController: ViewCustomizer {
 				.onCellSelection { [unowned self] (_, _) in
 					self.reset()
 				}
+			+++ Section("Advertisements")
+			<<< adsRow
 	}
 
 	private func help() {
@@ -88,5 +114,19 @@ extension SettingsViewController: ViewCustomizer {
 			self.delegate?.settingsViewControllerDidReset(self)
 		})
 		present(alertController, animated: true, completion: nil)
+	}
+}
+
+// MARK: - `RxBinder` -
+extension SettingsViewController: RxBinder {
+	func setUpBindings() {
+		viewModel.adsEnabled
+			.bind(to: adsRow.rx.value)
+			.disposed(by: disposeBag)
+
+		adsRow.rx.value
+			.map { $0 ?? false }
+			.subscribe(onNext: { [unowned self] in self.delegate?.settingsViewController(self, didSetAdsEnabled: $0) })
+			.disposed(by: disposeBag)
 	}
 }
