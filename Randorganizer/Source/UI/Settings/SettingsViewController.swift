@@ -101,7 +101,6 @@ extension SettingsViewController: ViewCustomizer {
 				}
 			+++ Section("Items")
 			<<< defaultBombsRow
-			+++ Section("")
 			+++ Section("Advertisements")
 			<<< adsRow
 	}
