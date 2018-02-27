@@ -12,6 +12,7 @@ enum Color {
 	case triforceYellow
 	case darkGreen
 
+	// swiftlint:disable:next large_tuple
 	var rgb: (Int, Int, Int) {
 		switch self {
 		case .darkGray: return (73, 75, 75)

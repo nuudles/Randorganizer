@@ -41,6 +41,9 @@
 		30392074201F9B2000DA0398 /* Array+ReplaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30392073201F9B2000DA0398 /* Array+ReplaceItem.swift */; };
 		306AD388203E6E14005595F0 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306AD387203E6E14005595F0 /* Settings.swift */; };
 		308A23EC202950E0001DA90B /* EasyTipView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308A23EB202950E0001DA90B /* EasyTipView.framework */; };
+		30D2837E2045AB9100C8B4E9 /* Location+Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D2837D2045AB9100C8B4E9 /* Location+Offset.swift */; };
+		30D283802045ABAE00C8B4E9 /* Location+Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D2837F2045ABAE00C8B4E9 /* Location+Title.swift */; };
+		30D283822045ABF700C8B4E9 /* Dungeon+Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D283812045ABF700C8B4E9 /* Dungeon+Offset.swift */; };
 		30DEC568201A68D4008F6680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DEC55F201A68D4008F6680 /* Assets.xcassets */; };
 		30DEC569201A68D4008F6680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DEC560201A68D4008F6680 /* LaunchScreen.storyboard */; };
 		30DEC56C201A68D4008F6680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DEC567201A68D4008F6680 /* AppDelegate.swift */; };
@@ -102,6 +105,9 @@
 		30392073201F9B2000DA0398 /* Array+ReplaceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ReplaceItem.swift"; sourceTree = "<group>"; };
 		306AD387203E6E14005595F0 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		308A23EB202950E0001DA90B /* EasyTipView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EasyTipView.framework; path = Carthage/Build/iOS/EasyTipView.framework; sourceTree = "<group>"; };
+		30D2837D2045AB9100C8B4E9 /* Location+Offset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+Offset.swift"; sourceTree = "<group>"; };
+		30D2837F2045ABAE00C8B4E9 /* Location+Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+Title.swift"; sourceTree = "<group>"; };
+		30D283812045ABF700C8B4E9 /* Dungeon+Offset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dungeon+Offset.swift"; sourceTree = "<group>"; };
 		30DEC549201A6804008F6680 /* Randorganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Randorganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DEC55F201A68D4008F6680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30DEC561201A68D4008F6680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -224,9 +230,12 @@
 			children = (
 				30392073201F9B2000DA0398 /* Array+ReplaceItem.swift */,
 				30F79431201A899C0045D782 /* Collection+Chunk.swift */,
+				30D283812045ABF700C8B4E9 /* Dungeon+Offset.swift */,
 				30337F592027774A00BA986E /* Dungeon+World.swift */,
 				3033B611202CBFFD0042CC01 /* Eureka+Rx.swift */,
 				303559DB202551B500E4CEDE /* Game+Availability.swift */,
+				30D2837D2045AB9100C8B4E9 /* Location+Offset.swift */,
+				30D2837F2045ABAE00C8B4E9 /* Location+Title.swift */,
 				30337F502026A81B00BA986E /* Location+World.swift */,
 				3039206B201E141A00DA0398 /* UICollectionView+ReusableView.swift */,
 				300CA96E202A7F4E0065A3E7 /* UIColor+Color.swift */,
@@ -482,10 +491,12 @@
 				30F79434201A8AAF0045D782 /* ItemViewModel.swift in Sources */,
 				30F7943F201B774D0045D782 /* AppearanceHelper.swift in Sources */,
 				30337F5520276B4300BA986E /* UIImage+Color.swift in Sources */,
+				30D283822045ABF700C8B4E9 /* Dungeon+Offset.swift in Sources */,
 				3033B610202CBFD20042CC01 /* SettingsViewModel.swift in Sources */,
 				30DEC574201A6A45008F6680 /* RootViewController.swift in Sources */,
 				30337F4F2026A7FB00BA986E /* World.swift in Sources */,
 				30F79438201B73740045D782 /* RootViewModel.swift in Sources */,
+				30D2837E2045AB9100C8B4E9 /* Location+Offset.swift in Sources */,
 				3038BBB8203A4F3D00326029 /* Secrets.swift in Sources */,
 				30337F5320274F9500BA986E /* LocationButton.swift in Sources */,
 				30337F58202775F100BA986E /* DungeonLocationView.swift in Sources */,
@@ -508,6 +519,7 @@
 				303559DC202551B500E4CEDE /* Game+Availability.swift in Sources */,
 				30DEC58B201A76A4008F6680 /* UIViewController+SafeArea.swift in Sources */,
 				3039206C201E141A00DA0398 /* UICollectionView+ReusableView.swift in Sources */,
+				30D283802045ABAE00C8B4E9 /* Location+Title.swift in Sources */,
 				30F7943A201B76730045D782 /* MapViewController.swift in Sources */,
 				30DEC587201A7019008F6680 /* Location.swift in Sources */,
 			);
