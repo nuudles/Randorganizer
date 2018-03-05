@@ -15,6 +15,8 @@ final class HelpViewController: UIViewController {
 	// MARK: - Initializations -
 	init() {
 		super.init(nibName: nil, bundle: nil)
+
+		title = "Help"
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -43,6 +45,7 @@ extension HelpViewController: ViewCustomizer {
 		guard let path = Bundle.main.path(forResource: "Help", ofType: "html")
 			else { return }
 
+		webView.navigationDelegate = self
 		webView.isOpaque = false
 		view.addSubview(webView)
 
@@ -52,5 +55,22 @@ extension HelpViewController: ViewCustomizer {
 		webView.snp.makeConstraints { (make) in
 			make.edges.equalToSuperview()
 		}
+	}
+}
+
+// MARK: - `WKNavigationDelegate` -
+extension HelpViewController: WKNavigationDelegate {
+	func webView(_ webView: WKWebView,
+				 decidePolicyFor navigationAction: WKNavigationAction,
+				 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+		guard let url = navigationAction.request.url,
+			url.scheme != "file",
+			UIApplication.shared.canOpenURL(url)
+			else {
+				decisionHandler(.allow)
+				return
+			}
+		UIApplication.shared.open(url, options: [:], completionHandler: nil)
+		decisionHandler(.cancel)
 	}
 }
