@@ -329,7 +329,14 @@ extension Game {
 		case .towerOfHera:
 			guard canDefeatBoss(for: dungeon)
 				else { return .unavailable }
-			return chestAvailability(for: dungeon)
+
+			let deathMountainAccess = deathMountainAvailability
+			guard deathMountainAccess != .unavailable,
+				hasItem(.mirror) || (hasItem(.hookshot) && hasItem(.hammer))
+				else { return .unavailable }
+			guard hasItem(.fireRod) || hasItem(.lantern) else { return .possible }
+
+			return deathMountainAccess
 		case .palaceOfDarkness:
 			guard hasItem(.moonPearl) && (hasItem(.bow) || hasItem(.bowAndSilverArrows)) && hasItem(.hammer),
 				dungeonIsComplete(.castleTower) || hasItem(.glove),
