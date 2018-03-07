@@ -314,7 +314,7 @@ extension Game {
 			}
 			return hasItem(.lantern) ? .available : .glitches
 		case .easternPalace:
-			guard hasItem(.bowAndArrow) || hasItem(.bowAndSilverArrows),
+			guard hasItem(.bow) || hasItem(.bowAndSilverArrows),
 				canDefeatBoss(for: dungeon)
 				else { return .unavailable }
 			return hasItem(.lantern) ? .available : .glitches
@@ -396,7 +396,7 @@ extension Game {
 			guard completedCrystals == 7,
 				hasItem(.titansMitts) && hasItem(.moonPearl),
 				hasItem(.hookshot) || hasItem(.hammer),
-				hasItem(.bowAndArrow) || hasItem(.bowAndSilverArrows),
+				hasItem(.bow) || hasItem(.bowAndSilverArrows),
 				hasItem(.lantern) || hasItem(.fireRod),
 				canDefeatBoss(for: dungeon)
 				else { return .unavailable }
