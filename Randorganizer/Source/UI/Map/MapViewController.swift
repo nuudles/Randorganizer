@@ -194,7 +194,7 @@ extension MapViewController: ViewCustomizer {
 		preferences.drawing.foregroundColor = .white
 		preferences.drawing.font = .returnOfGanonFont(ofSize: 18)
 		let tip = EasyTipView(text: location.title, preferences: preferences)
-		tip.show(forView: button)
+		tip.show(forView: button, withinSuperview: view)
 
 		tipView = tip
 	}
