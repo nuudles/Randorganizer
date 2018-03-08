@@ -24,9 +24,11 @@ extension Game {
 			return eastDeathMountainAvailability
 		case .mimicCave:
 			guard hasItem(.moonPearl) && hasItem(.hammer) && hasItem(.somaria) && hasItem(.mirror) &&
-					hasItem(.titansMitts),
-				canEnterMedallionDungeon(.turtleRock)
+					hasItem(.titansMitts)
 				else { return .unavailable }
+
+			let medallionAvailability = medallionDungeonAvailability(.turtleRock)
+			guard medallionAvailability == .available else { return medallionAvailability }
 
 			return hasItem(.fireRod) ? deathMountainAvailability : .possible
 		case .tavern:
@@ -370,9 +372,11 @@ extension Game {
 		case .miseryMire:
 			guard hasItem(.flute) && hasItem(.moonPearl) && hasItem(.titansMitts) && hasItem(.somaria),
 				hasItem(.boots) || hasItem(.hookshot),
-				canEnterMedallionDungeon(dungeon),
 				canDefeatBoss(for: dungeon)
 				else { return .unavailable }
+
+			let medallionAvailability = medallionDungeonAvailability(dungeon)
+			guard medallionAvailability == .available else { return medallionAvailability }
 
 			if hasItem(.lantern) {
 				return .available
@@ -383,9 +387,12 @@ extension Game {
 			guard hasItem(.moonPearl) && hasItem(.hammer) && hasItem(.titansMitts) && hasItem(.somaria),
 				hasItem(.hookshot) || hasItem(.mirror),
 				hasItem(.iceRod) && hasItem(.fireRod),
-				canEnterMedallionDungeon(dungeon),
 				canDefeatBoss(for: dungeon)
 				else { return .unavailable }
+
+			let medallionAvailability = medallionDungeonAvailability(dungeon)
+			guard medallionAvailability == .available else { return medallionAvailability }
+
 			if !(hasItem(.byrna) || hasItem(.cape) || hasItem(.mirrorShield)) {
 				return .possible
 			}
@@ -469,18 +476,23 @@ extension Game {
 			return hasItem(.hammer) ? .available : .glitches
 		case .miseryMire:
 			guard hasItem(.flute) && hasItem(.moonPearl) && hasItem(.titansMitts),
-				hasItem(.boots) || hasItem(.hookshot),
-				canEnterMedallionDungeon(dungeon)
+				hasItem(.boots) || hasItem(.hookshot)
 				else { return .unavailable }
+
+			let medallionAvailability = medallionDungeonAvailability(dungeon)
+			guard medallionAvailability == .available else { return medallionAvailability }
+
 			if configuration.remainingChests > 1 {
 				return hasItem(.fireRod) || hasItem(.lantern) ? .available : .possible
 			}
 			return hasItem(.lantern) && hasItem(.somaria) ? .available : .possible
 		case .turtleRock:
 			guard hasItem(.moonPearl) && hasItem(.hammer) && hasItem(.titansMitts) && hasItem(.somaria),
-				hasItem(.hookshot) || hasItem(.mirror),
-				canEnterMedallionDungeon(dungeon)
+				hasItem(.hookshot) || hasItem(.mirror)
 				else { return .unavailable }
+
+			let medallionAvailability = medallionDungeonAvailability(dungeon)
+			guard medallionAvailability == .available else { return medallionAvailability }
 
 			let hasLaserBridgeSafety = hasItem(.byrna) || hasItem(.cape) || hasItem(.mirrorShield)
 			let darkAvailability = hasItem(.lantern) ? Availability.available : .glitches
@@ -551,17 +563,16 @@ extension Game {
 			.isComplete ?? false
 	}
 
-	private func canEnterMedallionDungeon(_ dungeon: Dungeon) -> Bool {
+	private func medallionDungeonAvailability(_ dungeon: Dungeon) -> Availability {
 		// Need a sword to use a medallion
-		guard hasItem(.sword) else { return false }
+		guard hasItem(.sword) else { return .unavailable }
 
 		if hasItem(.bombos) && hasItem(.ether) && hasItem(.quake) {
-			return true
+			return .available
 		}
-		guard let medallion = dungeons.filter({ $0.dungeon == dungeon }).first?.requiredMedallion,
-			hasItem(medallion)
-			else { return false }
-		return true
+		guard let medallion = dungeons.filter({ $0.dungeon == dungeon }).first?.requiredMedallion
+			else { return (hasItem(.bombos) || hasItem(.ether) || hasItem(.quake)) ? .possible : .unavailable }
+		return hasItem(medallion) ? .available : .unavailable
 	}
 
 	private var tabletAvailability: Availability {
